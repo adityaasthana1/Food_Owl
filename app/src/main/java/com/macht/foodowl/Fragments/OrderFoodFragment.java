@@ -1,6 +1,7 @@
 package com.macht.foodowl.Fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,9 @@ public class OrderFoodFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+
         firebaseFirestore = FirebaseFirestore.getInstance();
         collectionReference = firebaseFirestore.collection("fooditems");
         setUpRecyclerView(view);
@@ -49,13 +53,17 @@ public class OrderFoodFragment extends Fragment {
         foodRecyclerAdapter = new FoodRecyclerAdapter(getContext(), options, Glide.with(this), view);
         recyclerView = view.findViewById(R.id.FoodItemRecyclerView);
         recyclerView.setHasFixedSize(true);
+        recyclerView.setNestedScrollingEnabled(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(foodRecyclerAdapter);
+        Log.d("ADAPTER","ADAPTER Created SUccessfully");
+
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
         foodRecyclerAdapter.startListening();
     }
 

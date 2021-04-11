@@ -1,26 +1,34 @@
 package com.macht.foodowl.Adapters;
 
 public class CartElement {
-    public String id;
     public String foodid;
     public String foodname;
     public String price;
     public int quantity;
+    public int value;
 
-    public CartElement(String id, String foodid, String foodname, String price, int quantity) {
-        this.id = id;
+    public CartElement(){
+        foodid = "";
+        foodname = "";
+        price = "";
+        quantity = 0;
+        value = 0;
+    }
+
+    public CartElement( String foodid, String foodname, String price, int quantity) {
         this.foodid = foodid;
         this.foodname = foodname;
         this.price = price;
         this.quantity = quantity;
+        this.value = Integer.parseInt(price)*quantity;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public CartElement(String foodid, String foodname, String price, int quantity, int value) {
+        this.foodid = foodid;
+        this.foodname = foodname;
+        this.price = price;
+        this.quantity = quantity;
+        this.value = value;
     }
 
     public String getFoodid() {
@@ -53,5 +61,13 @@ public class CartElement {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 }

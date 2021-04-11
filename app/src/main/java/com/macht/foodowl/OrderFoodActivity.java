@@ -6,6 +6,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.macht.foodowl.Fragments.FoodLoadingFragment;
@@ -14,7 +16,7 @@ import com.macht.foodowl.Fragments.OrderFoodFragment;
 
 public class OrderFoodActivity extends AppCompatActivity {
     FrameLayout frameLayout;
-
+    public final static int LOAD_TIME = 3000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +24,13 @@ public class OrderFoodActivity extends AppCompatActivity {
         frameLayout = findViewById(R.id.framelayout_orderfood);
         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_orderfood,new FoodLoadingFragment()).commit();
         if (isNetworkConnected()) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_orderfood,new OrderFoodFragment()).commit();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_orderfood,new OrderFoodFragment()).commit();
+                }
+            },LOAD_TIME);
+
         }else{
             getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_orderfood,new NetworkErroFragment()).commit();
         }
