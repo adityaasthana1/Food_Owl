@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:id="@+id/lottianimation"
+        app:lottie_fileName="networkerror.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:text="Aww, Snap!"
+        android:fontFamily="@font/robotblack"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:textSize="24dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:textColor="#848484"
+        android:layout_gravity="start"
+        android:layout_marginStart="20dp"
+        android:text="Looks like you are not connected to the network!"
+        android:layout_marginEnd="20dp"
+        android:gravity="center_horizontal"
+        />
+
+</LinearLayout>

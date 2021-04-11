@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/darker_red"
+    android:orientation="vertical"
+
+    >
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/splashlogo"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="sleepyowl.json"
+       />
+
+    <TextView
+        android:id="@+id/FoodOwlText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/ralewayxtrabold"
+        android:elevation="5dp"
+        android:text="Food Owl"
+        android:textColor="#fff"
+        android:textSize="40dp"
+        android:textStyle="bold"
+       />
+
+    <LinearLayout
+        android:id="@+id/AdityaAsthana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+       >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Designed by"
+            android:textColor="#000"
+            android:textSize="11dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Aditya Asthana"
+            android:textColor="#fff"
+            android:textSize="11dp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/signupbg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="#fff"
+        android:padding="5dp"
+        tools:context=".SignupActivity">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            app:lottie_fileName="owlsleeping.json"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:background="#fff"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="Food Owl"
+            android:textStyle="bold"
+            android:fontFamily="@font/galada"
+            android:textSize="40dp"
+            android:elevation="5dp"
+            android:textColor="#000"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/raleway"
+            android:layout_height="wrap_content"
+            android:text="Welcome aboard! Let's Get you signed up to our awesome application!"
+            android:textSize="16dp"
+            android:gravity="center_horizontal"
+            android:textColor="#000"
+            android:elevation="5dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            >
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:background="@drawable/edittextshape"
+                android:layout_marginEnd="2dp"
+                android:id="@+id/fname"
+                android:textSize="16dp"
+                android:layout_marginBottom="5dp"
+                android:hint="First name"
+                android:paddingStart="20dp"
+                android:inputType="text"
+                android:textColorHint="#848484"
+                android:paddingEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#000"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:background="@drawable/edittextshape"
+                android:layout_marginStart="2dp"
+                android:id="@+id/lname"
+                android:layout_marginBottom="5dp"
+                android:textSize="16dp"
+                android:hint="Last name"
+                android:paddingStart="20dp"
+                android:inputType="text"
+                android:paddingEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:textColorHint="#848484"
+                android:textColor="#000"/>
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/edittextshape"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:id="@+id/emailsignup"
+            android:textSize="16dp"
+            android:hint="Email"
+            android:paddingStart="20dp"
+            android:inputType="textEmailAddress"
+            android:paddingEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#848484"
+            android:textColor="#000"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/edittextshape"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:id="@+id/passwordsignup"
+            android:textSize="16dp"
+            android:hint="Password"
+            android:paddingStart="20dp"
+            android:inputType="textPassword"
+            android:paddingEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#848484"
+            android:textColor="#000"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/edittextshape"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:id="@+id/confirmpasswordsu"
+            android:textSize="16dp"
+            android:hint="Confirm Password"
+            android:textColorHint="#848484"
+            android:paddingStart="20dp"
+            android:inputType="textPassword"
+            android:paddingEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#000"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/edittextshape"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:id="@+id/phonesignup"
+            android:textSize="16dp"
+            android:hint="+91 |  Phone Number"
+            android:paddingStart="20dp"
+            android:textColorHint="#848484"
+            android:inputType="textPassword"
+            android:paddingEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#000"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="By signing up, you aggre to our Terms of Use and Privacy Policy."
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textColorHint="#848484"
+            android:textColor="#848484"
+            android:layout_marginTop="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terms of Use"
+                android:textColor="@color/red"
+                android:id="@+id/termsofuse"
+                android:layout_marginEnd="20dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Privacy Policy"
+                android:layout_marginStart="20dp"
+                android:id="@+id/privacypolicy"
+                android:textColor="@color/red"/>
+        </LinearLayout>
+
+        <android.widget.Button
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/button0"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:elevation="5dp"
+            android:layout_marginTop="5dp"
+            android:text="Sign up"
+            android:id="@+id/signupbutton"
+            android:textColor="#ecf0f1"
+            />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Made with ❤ in"
+                android:textColor="#848484"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Ujjain"
+                android:textColor="#ffb8b8"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#fff"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="0dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center_horizontal"
+        android:elevation="10dp"
+        android:orientation="vertical"
+        tools:context=".HomeActivity">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome,"
+                android:textColor="#000"
+                android:fontFamily="@font/lato"
+                android:layout_gravity="start"
+                android:textSize="16dp"
+                android:layout_marginStart="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aditya"
+                android:textColor="#000"
+                android:fontFamily="@font/lato"
+                android:id="@+id/userFirstName"
+                android:layout_gravity="start"
+                android:textSize="16dp"
+                android:layout_marginStart="10dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hope you're doing great today!"
+            android:layout_gravity="start"
+            android:textColor="#848484"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="14dp"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="10dp"
+            android:elevation="3dp"
+            app:cardCornerRadius="10dp"
+            android:background="#ecf0f1"
+            >
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/homecarousel"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:fillColor="#FFFFFFFF"
+                app:pageColor="#00000000"
+                android:background="@drawable/offer2"
+                app:radius="6dp"
+                app:slideInterval="3000"
+                app:strokeColor="#FF777777"
+                app:strokeWidth="1dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/orderFoodLayout"
+            android:elevation="4dp"
+            android:background="@drawable/darkoutline"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:src="@drawable/orderfoodnow"
+                android:scaleType="centerCrop"
+                />
+
+            <android.widget.Button
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:backgroundTint="#444"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order Food Late Night!"
+                android:textColor="#000"
+                android:fontFamily="@font/lato"
+                android:layout_gravity="start"
+                android:layout_marginTop="5dp"
+                android:textSize="16dp"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="#848484"
+                android:layout_gravity="start"
+                android:layout_marginStart="10dp"
+                android:text="Browse around for the local food store open for late night orders at the moment."
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/MyBookingLayout"
+            android:elevation="4dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/darkoutline"
+            android:layout_marginTop="10dp"
+            android:padding="4dp"
+            >
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="100dp"
+                android:elevation="10dp">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="#fff"
+                    android:layout_gravity="start"
+                    android:src="@drawable/account_vector"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/userImageHome"
+                    />
+            </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="start"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="My Orders"
+
+                    android:textSize="20dp"
+                    android:fontFamily="@font/lato"
+                    android:textColor="#000"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tap here to check and manage all your orders."
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="14dp"
+                    android:textColor="#848484"
+                    android:layout_marginTop="5dp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/AboutUsLayout"
+                android:elevation="5dp"
+                android:background="@drawable/darkoutline"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:background="#ecf0f1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:scaleType="centerCrop"
+                    >
+
+                    <ImageView
+                        android:id="@+id/splashlogo"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/pngegg"
+                        android:elevation="5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.497"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.4" />
+
+                    <TextView
+                        android:id="@+id/FoodOwlText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ralewayxtrabold"
+                        android:elevation="5dp"
+                        android:text="Food Owl"
+                        android:textColor="#000"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/splashlogo" />
+
+                </LinearLayout>
+
+                <android.widget.Button
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:backgroundTint="#444"
+                    android:layout_marginTop="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="About Us"
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="5dp"
+                    android:textSize="16dp"
+                    android:layout_marginStart="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="10dp"
+                    android:textColor="#848484"
+                    android:text="Just like every other other awesome venture, we have our own story! Get to know about us!"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:id="@+id/contactus"
+                android:elevation="4dp"
+                android:background="@drawable/darkoutline"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:src="@drawable/contactimg"
+                    android:scaleType="centerCrop"
+                    />
+
+                <android.widget.Button
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:backgroundTint="#444"
+                    android:layout_marginTop="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact Us\nCostumer Support"
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="5dp"
+                    android:textSize="16dp"
+                    android:layout_marginStart="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="#848484"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="10dp"
+                    android:text="Contact our 24x7 available customer support for any help regarding any descripancies in our service."
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Designed by"
+                android:textSize="11dp"
+                android:textColor="#000"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Aditya Asthana"
+                android:textSize="11dp"
+                android:textColor="#e74c3c"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</ScrollView>

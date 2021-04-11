@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Food Owl</string>
+    <string name="privacy_policy">https://www.privacypolicygenerator.info/live.php?token=KZuLaJEZwWMqoAaeljFYNZo0bwSBrcVG</string>
+    <string-array name="numbers">
+        <item>one</item>
+        <item>two</item>
+        <item>three</item>
+        <item>four</item>
+        <item>five</item>
+    </string-array>
+    <string name="proceed_order"><u>Proceed Order</u></string>
+</resources>

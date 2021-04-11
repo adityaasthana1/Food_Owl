@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:id="@+id/toptexts"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Food Owl Menu Card"
+            android:textColor="#000"
+            android:fontFamily="@font/ralewayxtrabold"
+            android:layout_gravity="start"
+            android:layout_marginTop="5dp"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11dp"
+            android:text="Build your menu card from the following items available right now for order. Your Order will be place
+once the payment is completed. You will be recieving live notifications from our services regarding your order."
+           android:textColor="#848484"
+            />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toptexts"
+        android:id="@+id/FoodItemRecyclerView"
+        tools:listitem="@layout/food_item_element"
+        />
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:padding="2dp"
+       android:background="@color/red"
+       android:layout_alignParentBottom="true"
+       >
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="INR (RS) 5000"
+           android:fontFamily="@font/ralewayxtrabold"
+           android:textColor="#fff"
+           android:id="@+id/ordertotaltext"
+           android:textSize="14dp"
+           android:layout_alignParentStart="true"
+           android:layout_centerVertical="true"
+           android:layout_toLeftOf="@id/proceedordertext"
+           android:layout_marginStart="10dp"
+           android:layout_marginEnd="20dp"
+           />
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+            android:orientation="vertical"
+           android:layout_centerVertical="true"
+           android:id="@+id/proceedordertext"
+           android:layout_alignParentEnd="true"
+           >
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="@string/proceed_order"
+               android:fontFamily="@font/ralewayxtrabold"
+               android:textColor="#fff"
+               android:textSize="14dp"
+               android:layout_marginEnd="10dp"
+               />
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="(view cart)"
+               android:fontFamily="@font/ralewayxtrabold"
+               android:textColor="#fff"
+               android:textSize="12dp"
+               android:layout_marginBottom="5dp"
+               android:layout_marginEnd="10dp"
+               />
+       </LinearLayout>
+
+
+   </RelativeLayout>
+
+</RelativeLayout>
