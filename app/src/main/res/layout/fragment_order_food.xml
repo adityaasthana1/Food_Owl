@@ -39,12 +39,14 @@ once the payment is completed. You will be recieving live notifications from our
         android:layout_below="@+id/toptexts"
         android:id="@+id/FoodItemRecyclerView"
         tools:listitem="@layout/food_item_element"
+        android:layout_above="@+id/proceedorderLayout"
         />
 
    <RelativeLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:padding="2dp"
+       android:id="@+id/proceedorderLayout"
        android:background="@color/red"
        android:layout_alignParentBottom="true"
        >
