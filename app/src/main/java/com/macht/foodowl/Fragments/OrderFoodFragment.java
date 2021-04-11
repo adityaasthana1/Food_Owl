@@ -39,15 +39,14 @@ public class OrderFoodFragment extends Fragment {
         collectionReference = firebaseFirestore.collection("fooditems");
         setUpRecyclerView(view);
 
-
     }
 
     private void setUpRecyclerView(@NonNull View view) {
-        Query query = collectionReference.orderBy("foodtype",Query.Direction.ASCENDING);
+        Query query = collectionReference.orderBy("foodtag",Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<FoodItem> options = new FirestoreRecyclerOptions.Builder<FoodItem>()
                 .setQuery(query, FoodItem.class)
                 .build();
-        foodRecyclerAdapter = new FoodRecyclerAdapter(options, Glide.with(this),getContext());
+        foodRecyclerAdapter = new FoodRecyclerAdapter(getContext(), options, Glide.with(this), view);
         recyclerView = view.findViewById(R.id.FoodItemRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
