@@ -40,14 +40,14 @@ once the payment is completed. You will be recieving live notifications from our
         android:layout_below="@+id/toptexts"
         android:id="@+id/FoodItemRecyclerView"
         tools:listitem="@layout/food_item_element"
-        android:layout_above="@+id/proceedorderLayout"
+        android:layout_above="@+id/proceedorderLayoutcart"
         />
 
    <RelativeLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:padding="2dp"
-       android:id="@+id/proceedorderLayout"
+       android:id="@+id/proceedorderLayoutcart"
        android:background="@color/red"
        android:layout_alignParentBottom="true"
        >
@@ -61,7 +61,7 @@ once the payment is completed. You will be recieving live notifications from our
            android:textSize="14dp"
            android:layout_alignParentStart="true"
            android:layout_centerVertical="true"
-           android:layout_toLeftOf="@id/proceedordertext"
+           android:layout_toLeftOf="@id/proceedorderlayout"
            android:layout_marginStart="10dp"
            android:layout_marginEnd="20dp"
            />
@@ -70,7 +70,7 @@ once the payment is completed. You will be recieving live notifications from our
            android:layout_height="wrap_content"
             android:orientation="vertical"
            android:layout_centerVertical="true"
-           android:id="@+id/proceedordertext"
+           android:id="@+id/proceedorderlayout"
            android:layout_alignParentEnd="true"
            >
            <TextView

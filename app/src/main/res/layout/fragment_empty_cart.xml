@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:lottie_fileName="emptycart.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_ignoreDisabledSystemAnimations="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Empty!!"
+        android:fontFamily="@font/robotblack"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:textSize="24dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:textColor="#848484"
+        android:layout_marginStart="50dp"
+        android:text="Looks like your cart is empty. Add some food and then we can begin!"
+        android:layout_marginEnd="50dp"
+        android:gravity="center_horizontal"
+        />
+
+</LinearLayout>

@@ -27,7 +27,7 @@ public class OrderFoodActivity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_orderfood,new OrderFoodFragment()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_orderfood,new OrderFoodFragment(), "ORDER_FOOD_FRAGMENT").commit();
                 }
             },LOAD_TIME);
 

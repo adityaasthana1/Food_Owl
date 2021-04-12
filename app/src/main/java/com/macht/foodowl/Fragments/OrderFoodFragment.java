@@ -1,14 +1,18 @@
 package com.macht.foodowl.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.macht.foodowl.Adapters.FoodItem;
 import com.macht.foodowl.Adapters.FoodRecyclerAdapter;
+import com.macht.foodowl.CartActivity;
 import com.macht.foodowl.R;
 
 public class OrderFoodFragment extends Fragment {
@@ -26,6 +31,7 @@ public class OrderFoodFragment extends Fragment {
     CollectionReference collectionReference;
     FoodRecyclerAdapter foodRecyclerAdapter;
     RecyclerView recyclerView;
+    LinearLayout ProceedOrderTextView;
 
     @Nullable
     @Override
@@ -37,11 +43,14 @@ public class OrderFoodFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
+        ProceedOrderTextView = view.findViewById(R.id.proceedorderlayout);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         collectionReference = firebaseFirestore.collection("fooditems");
         setUpRecyclerView(view);
+        ProceedOrderTextView.setOnClickListener(v -> {
+            startActivityForResult(new Intent(getContext(), CartActivity.class) , 1);
+        });
 
     }
 
@@ -71,5 +80,16 @@ public class OrderFoodFragment extends Fragment {
     public void onStop() {
         super.onStop();
         foodRecyclerAdapter.stopListening();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("ORDER_FOOD_FRAGMENT");
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.detach(fragment);
+        fragmentTransaction.attach(fragment);
+        fragmentTransaction.commit();
+
     }
 }

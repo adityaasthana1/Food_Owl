@@ -93,8 +93,9 @@ public class FoodRecyclerAdapter extends FirestoreRecyclerAdapter<FoodItem, Food
                             CartElement cartElement = task.getResult().toObject(CartElement.class);
                             String added = "Added : " + cartElement.getQuantity();
                             holder.AddToCartButton.setText(added);
+                            Log.d("GETTING_QUANTITY","The item : " + model.getFoodname() + " " + model.getFoodid() + " Was present in the cart.");
                         }else{
-                            Log.d("GETTING_QUANTITY","There was problem getting the quantity of items  present in the cart");
+                            Log.d("NOT_GETTING_QUANTITY","The item : " + model.getFoodname() + " " + model.getFoodid() + " Was not present in the cart.");
                         }
                     }
                 });
@@ -149,6 +150,8 @@ public class FoodRecyclerAdapter extends FirestoreRecyclerAdapter<FoodItem, Food
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 selectedquantity[0] = numberPicker.getValue();
+
+
 
                 CartReference.document("cartlist").collection("list").document(foodmodel.getFoodid())
                         .get()
@@ -244,6 +247,8 @@ public class FoodRecyclerAdapter extends FirestoreRecyclerAdapter<FoodItem, Food
 
         }
     }
+
+
 
 
 }

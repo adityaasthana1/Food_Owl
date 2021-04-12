@@ -17,8 +17,8 @@
             android:orientation="horizontal"
             >
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:src="@drawable/veglogo"
                 android:id="@+id/element_cart_vegtype"
                 />
@@ -78,7 +78,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rs 100"
+            android:text="₹100"
             android:textSize="14dp"
             android:fontFamily="@font/robotoregular"
             android:textColor="#000"
@@ -86,7 +86,7 @@
             android:id="@+id/element_cart_value"
             android:layout_marginTop="5dp"
             />
-
     </LinearLayout>
+
 
 </RelativeLayout>

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".CartActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order Summary"
+        android:textColor="#000"
+        android:id="@+id/ordersummarytext"
+        android:fontFamily="@font/ralewayxtrabold"
+        android:layout_gravity="start"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:textSize="16dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cart_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/final_price_layout"
+        android:layout_below="@id/ordersummarytext"
+        android:padding="10dp"
+        tools:listitem="@layout/element_cart_item" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/final_price_layout"
+        android:layout_above="@id/delivery_layout"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Item Total  "
+                android:textSize="14dp"
+                android:fontFamily="@font/robotoregular"
+                android:layout_marginStart="10dp"
+                android:layout_alignParentStart="true"
+                android:textColor="#000"
+                android:textStyle="normal"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹200"
+                android:textSize="16dp"
+                android:fontFamily="@font/robotoregular"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/item_total_text"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deliver Charges "
+                android:textSize="14dp"
+                android:fontFamily="@font/robotoregular"
+                android:layout_marginStart="10dp"
+                android:layout_alignParentStart="true"
+                android:textColor="#000"
+                android:textStyle="normal"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹30"
+                android:textSize="16dp"
+                android:fontFamily="@font/robotoregular"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/delivery_charges_text"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Final Amount  "
+                android:textSize="14dp"
+                android:fontFamily="@font/lato"
+                android:layout_marginStart="5dp"
+                android:layout_alignParentStart="true"
+                android:textColor="#000"
+                android:textStyle="normal"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹230"
+                android:textSize="16dp"
+                android:fontFamily="@font/robotblack"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:id="@+id/final_value_text"
+                android:layout_alignParentEnd="true"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="#848484"
+            />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_above="@id/proceedorderLayoutcart"
+        android:id="@+id/delivery_layout"
+        android:padding="5dp"
+        android:layout_marginBottom="10dp"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivery Address "
+                android:textSize="14dp"
+                android:fontFamily="@font/lato"
+                android:layout_marginStart="5dp"
+                android:textColor="#000"
+                android:textStyle="normal"
+                android:id="@+id/delivery_address"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change"
+                android:textSize="14dp"
+                android:fontFamily="@font/lato"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/red"
+                android:textStyle="normal"
+                android:id="@+id/deliver_address_operation"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="127/5 Shastri Nagar Colony, naer Excellence School, Ujjain, Madhya Pradesh 456010"
+            android:textSize="14dp"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/robotoregular"
+            android:layout_marginStart="5dp"
+            android:textColor="#848484"
+            android:textStyle="normal"
+            android:id="@+id/delivery_address_details"
+            />
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:id="@+id/proceedorderLayoutcart"
+        android:background="@color/red"
+        android:layout_alignParentBottom="true"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apply Coupon"
+            android:fontFamily="@font/robotblack"
+            android:textColor="#fff"
+            android:id="@+id/applycoupontext"
+            android:textSize="14dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/placeorderlayout"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:id="@+id/placeorderlayout"
+            android:layout_alignParentEnd="true"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/place_order"
+                android:fontFamily="@font/ralewayxtrabold"
+                android:textColor="#fff"
+                android:textSize="14dp"
+                android:layout_marginEnd="20dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(make payment)"
+                android:fontFamily="@font/ralewayxtrabold"
+                android:textColor="#fff"
+                android:textSize="12dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="10dp"
+                />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
