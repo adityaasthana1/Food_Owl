@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.lifecycle.ViewModel;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.w3c.dom.Text;
 
@@ -28,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView TermsOfUse, PrivacyPolicy;
     LinearLayout SignUpButton, ForgotPasswordButton;
     FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +47,12 @@ public class LoginActivity extends AppCompatActivity {
         ForgotPasswordButton = findViewById(R.id.forgotpasswordlayout);
         
         firebaseAuth = FirebaseAuth.getInstance();
-        
-        if(firebaseAuth.getCurrentUser() != null){
+        firebaseUser = firebaseAuth.getCurrentUser();
+        if(firebaseUser != null && firebaseUser.isEmailVerified()){
             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
             finish();
         }
-        
+
         
         
         SigninButton.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password = Password.getText().toString().trim();
                 
                 if(email.isEmpty() || password.isEmpty()){
-                    Toast.makeText(LoginActivity.this, "Empty Fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Empty Fields", Toast.LENGTH_LONG).show();
                 }else{
                     firebaseAuth.signInWithEmailAndPassword(email,password)
                             .addOnSuccessListener(authResult -> {
@@ -82,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivityForResult(new Intent(LoginActivity.this,SignupActivity.class),1);
-                
+
             }
         });
 

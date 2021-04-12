@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,12 +25,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.type.DateTime;
 import com.macht.foodowl.R;
 
 import java.util.Date;
@@ -120,8 +117,6 @@ public class FoodRecyclerAdapter extends FirestoreRecyclerAdapter<FoodItem, Food
         }else{
             holder.AddToCartButton.setOnClickListener(v -> {
                 AddElementToCart(holder, model);
-                String price = "INR (Rs) "+ "₹"+model.getFoodprice();
-                priceView.setText(price);
                 //Toast.makeText(context, "Clicked on " + model.getFoodname() + "Quantity : " + Integer.toString(QuantitySelected), Toast.LENGTH_SHORT).show();
             });
         }
@@ -142,7 +137,7 @@ public class FoodRecyclerAdapter extends FirestoreRecyclerAdapter<FoodItem, Food
     private void AddElementToCart(@NonNull FoodViewHolder holder,FoodItem foodmodel) {
         NumberPicker numberPicker = new NumberPicker(context);
         numberPicker.setMaxValue(6);
-        numberPicker.setMinValue(1);
+        numberPicker.setMinValue(0);
         numberPicker.setValue(1);
         final int[] selectedquantity = {0};
 
@@ -160,35 +155,52 @@ public class FoodRecyclerAdapter extends FirestoreRecyclerAdapter<FoodItem, Food
                         .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
                                 if(task.isSuccessful() && task.getResult().exists()){
-                                    int existingquantity = 0, existingvalue=0;
                                     CartElement cartElement = task.getResult().toObject(CartElement.class);
-                                    existingquantity = cartElement.getQuantity();
-                                    existingquantity+=selectedquantity[0];
-                                    existingvalue = cartElement.getValue();
-                                    existingvalue+=selectedquantity[0]*Integer.parseInt(foodmodel.getFoodprice());
-                                    TotalAmount += selectedquantity[0]*Integer.parseInt(foodmodel.getFoodprice());
-                                    CartDetails cartDetails = new CartDetails(TotalAmount,new Date().toString());
-                                    CartElement cartElement1 = new CartElement(foodmodel.getFoodid(),foodmodel.foodname,foodmodel.getFoodprice(),existingquantity,existingvalue);
-                                    CartReference.document("cartlist").collection("list").document(foodmodel.getFoodid())
-                                            .set(cartElement1);
-                                    CartReference.document("cartdetails").set(cartDetails);
-                                    String added = "Added : " + existingquantity;
-                                    holder.AddToCartButton.setText(added);
-                                    Toast.makeText(context, "Added to Cart!", Toast.LENGTH_SHORT).show();
+                                    int NewValue = selectedquantity[0]*Integer.parseInt(foodmodel.getFoodprice());
+                                    TotalAmount = TotalAmount - cartElement.getValue() + NewValue ;
+                                    if (selectedquantity[0]==0){
+                                        CartReference.document("cartlist")
+                                                .collection("list")
+                                                .document(foodmodel.getFoodid())
+                                                .delete();
+                                        CartReference.document("cartdetails")
+                                                .set(new CartDetails(TotalAmount,new Date().toString()));
+                                        holder.AddToCartButton.setText("+ Add to Cart");
+
+                                    }else{
+                                        cartElement.setQuantity(selectedquantity[0]);
+                                        cartElement.setValue(NewValue);
+                                        CartReference.document("cartlist")
+                                                .collection("list")
+                                                .document(foodmodel.getFoodid())
+                                                .set(cartElement);
+                                        CartReference.document("cartdetails")
+                                                .set(new CartDetails(TotalAmount,new Date().toString()));
+                                        String added = "Added : " + cartElement.getQuantity();
+                                        holder.AddToCartButton.setText(added);
+                                    }
+
                                 }else {
+                                    if (selectedquantity[0]==0){
+                                        return;
+                                    }
+                                    CartElement cartElement = new CartElement(foodmodel.getFoodid(),foodmodel.getFoodname(),foodmodel.getFoodprice(),selectedquantity[0]);
                                     TotalAmount += selectedquantity[0]*Integer.parseInt(foodmodel.getFoodprice());
-                                    String price = "INR ₹" + TotalAmount;
-                                    String added = "Added : " + selectedquantity[0];
+                                    CartReference.document("cartlist")
+                                            .collection("list")
+                                            .document(foodmodel.getFoodid())
+                                            .set(cartElement);
+                                    CartReference.document("cartdetails")
+                                            .set(new CartDetails(TotalAmount,new Date().toString()));
+                                    String added = "Added : " + cartElement.getQuantity();
                                     holder.AddToCartButton.setText(added);
-                                    CartElement tempElement = new CartElement(foodmodel.getFoodid(),foodmodel.foodname,foodmodel.getFoodprice(),selectedquantity[0]);
-                                    CartDetails cartDetails = new CartDetails(TotalAmount,new Date().toString() );
-                                    Cart.put(foodmodel.getFoodid(),tempElement);
-                                    firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid()).collection("cart")
-                                            .document("cartlist").collection("list").document(foodmodel.getFoodid()).set(tempElement);
-                                    firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid()).collection("cart")
-                                            .document("cartdetails").set(cartDetails);
-                                    Toast.makeText(context, "Added To Cart!", Toast.LENGTH_SHORT).show();
+                                }
+                                String ordertotal = "INR ₹" + TotalAmount;
+                                priceView.setText(ordertotal);
+                                if (TotalAmount == 0){
+                                    CartReference.document("cartdetails").delete();
                                 }
                             }
                         });
@@ -221,7 +233,7 @@ public class FoodRecyclerAdapter extends FirestoreRecyclerAdapter<FoodItem, Food
         public FoodViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.food_element_image);
-            FoodName = itemView.findViewById(R.id.element_food_name);
+            FoodName = itemView.findViewById(R.id.element_cart_name);
             FoodDescription = itemView.findViewById(R.id.food_element_description);
             FoodPrice = itemView.findViewById(R.id.food_element_price);
             FoodTag = itemView.findViewById(R.id.food_element_tag);

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -28,6 +29,7 @@ public class SignupActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
     DatabaseReference databaseReference;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,10 @@ public class SignupActivity extends AppCompatActivity {
         Password = findViewById(R.id.passwordsignup);
         cPassword = findViewById(R.id.confirmpasswordsu);
         SignUpButton = findViewById(R.id.signupbutton);
+        progressDialog = new ProgressDialog(SignupActivity.this);
+        progressDialog.setMessage("Please wait while we sign you up");
+        progressDialog.setCanceledOnTouchOutside(false);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -56,11 +62,13 @@ public class SignupActivity extends AppCompatActivity {
             String password = Password.getText().toString().trim();
             String cpassword = cPassword.getText().toString().trim();
 
+
             if(firstname.isEmpty() || lastname.isEmpty() || emailaddress.isEmpty() || phonenumber.isEmpty() || password.isEmpty() || cpassword.isEmpty()){
                 Toast.makeText(this, "You cannot leave fields empty.", Toast.LENGTH_SHORT).show();
             }else if(!password.equals(cpassword)){
                 Toast.makeText(this, "Password Do not match", Toast.LENGTH_SHORT).show();
             }else{
+                progressDialog.show();
                 UserDataAdapter userDataAdapter = new UserDataAdapter(firstname,lastname,emailaddress,password);
                 firebaseAuth.createUserWithEmailAndPassword(emailaddress,password)
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
@@ -71,7 +79,7 @@ public class SignupActivity extends AppCompatActivity {
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                Toast.makeText(SignupActivity.this, "Email sent", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(SignupActivity.this, "Please verify your email", Toast.LENGTH_LONG).show();
                                             }
                                         });
                                 firebaseAuth = FirebaseAuth.getInstance();
@@ -79,15 +87,8 @@ public class SignupActivity extends AppCompatActivity {
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                Toast.makeText(SignupActivity.this, "SignedUp!", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                                databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid())
-                                        .child("userinfo").setValue(userDataAdapter)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Log.d("DONE_DATA" , "Data stored to firebase succesffuly!");
+                                                finish();
+                                                progressDialog.dismiss();
                                             }
                                         });
 
@@ -97,6 +98,7 @@ public class SignupActivity extends AppCompatActivity {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(SignupActivity.this, "Cant Do that!", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
                             }
                         });
             }
