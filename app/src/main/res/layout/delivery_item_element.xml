@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:background="@drawable/white_nowhere"
+    android:padding="5dp"
+    android:id="@+id/list_element_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/delete_price_container"
+        android:gravity="center_vertical"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentStart="true"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aditya Asthana"
+                android:textSize="14dp"
+                android:fontFamily="@font/lato"
+                android:layout_marginStart="5dp"
+                android:textColor="#000"
+                android:textStyle="normal"
+                android:id="@+id/element_name"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="127/5 Shastri Nagar Colony, Ujjain, Madhya Pradesh"
+            android:textColor="#000"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/robotoregular"
+            android:id="@+id/element_fulladdress"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="456010"
+            android:textColor="#000"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/robotoregular"
+            android:id="@+id/element_pincode"
+            />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/delete_price_container"
+        android:gravity="center_horizontal"
+        android:layout_alignParentEnd="true"
+        >
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/deleteicon"
+            android:id="@+id/element_delete"
+            android:elevation="4dp"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

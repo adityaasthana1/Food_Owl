@@ -11,4 +11,5 @@
     <string name="proceed_order"><u>Proceed Order</u></string>
     <string name="change"><u>Change</u></string>
     <string name="place_order"><u>Place Order</u></string>
+    <string name="add"><u>Add Address</u></string>
 </resources>

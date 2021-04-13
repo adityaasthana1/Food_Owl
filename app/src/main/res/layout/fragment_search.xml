@@ -1,16 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:layout_height="match_parent">
+    android:background="@color/white"
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search Fragment"
-        android:textColor="@color/black"
-        />
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Address"
+            android:textSize="36dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/ralewayxtrabold"
+            android:id="@+id/foodid"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:id="@+id/adddeliveryaddress"
+            android:background="@drawable/white_nowhere"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#848484"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Delivery Address"
+                android:fontFamily="@font/ralewayxtrabold"
+                android:textColor="@color/black"
+                android:drawableStart="@drawable/ic_baseline_add_24"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#848484"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
+        </LinearLayout>
 
 
-</LinearLayout>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/edittextshape"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="16dp"
+            android:hint="Full Name"
+            android:paddingStart="20dp"
+            android:id="@+id/fullname"
+            android:inputType="textPersonName"
+            android:paddingEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#848484"
+            android:textColor="#000"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/edittextshape"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="16dp"
+            android:hint="Mobile Number"
+            android:paddingStart="20dp"
+            android:inputType="text"
+            android:paddingEnd="20dp"
+            android:id="@+id/mobilenumber"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#848484"
+            android:textColor="#000"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/edittextshape"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="16dp"
+            android:hint="Pin Code"
+            android:id="@+id/pincode"
+            android:paddingStart="20dp"
+            android:inputType="text"
+            android:paddingEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#848484"
+            android:textColor="#000"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/edittextshape"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="16dp"
+            android:hint="House Number"
+            android:id="@+id/housenumber"
+            android:paddingStart="20dp"
+            android:inputType="textLongMessage"
+            android:paddingEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#848484"
+            android:textColor="#000"
+            android:maxLines="3"
+            android:maxLength="200"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/edittextshape"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="16dp"
+            android:hint="Area"
+            android:id="@+id/area"
+            android:paddingStart="20dp"
+            android:inputType="textImeMultiLine"
+            android:paddingEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#848484"
+            android:textColor="#000"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/edittextshape"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="16dp"
+            android:hint="Landmark"
+            android:id="@+id/landmark"
+            android:paddingStart="20dp"
+            android:inputType="textEmailAddress"
+            android:paddingEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#848484"
+            android:textColor="#000"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/edittextshape"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="16dp"
+            android:hint="City"
+            android:id="@+id/city"
+            android:paddingStart="20dp"
+            android:inputType="number"
+            android:paddingEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#848484"
+            android:textColor="#000"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/edittextshape"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="16dp"
+            android:hint="State"
+            android:id="@+id/state"
+            android:paddingStart="20dp"
+            android:inputType="textEmailAddress"
+            android:paddingEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#848484"
+            android:textColor="#000"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:id="@+id/addaddressbutton"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="Add Address"
+            android:background="@drawable/button0"
+            />
+    </LinearLayout>
+</ScrollView>

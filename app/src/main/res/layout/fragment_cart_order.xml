@@ -7,19 +7,36 @@
     android:background="@color/white"
     android:orientation="vertical"
     tools:context=".CartActivity">
-    <TextView
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Order Summary"
-        android:textColor="#000"
+        android:orientation="vertical"
         android:id="@+id/ordersummarytext"
-        android:fontFamily="@font/ralewayxtrabold"
-        android:layout_gravity="start"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:textSize="16dp"/>
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Summary"
+            android:textColor="#000"
+            android:fontFamily="@font/ralewayxtrabold"
+            android:layout_gravity="start"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:textSize="16dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="11dp"
+            android:text="Here is the summary of what you selected from the menu. If you don't like any entry, delete it from the cart and modify cart again from the menu!"
+            android:textColor="#848484"
+            />
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_recycler_view"
@@ -28,7 +45,9 @@
         android:layout_above="@id/final_price_layout"
         android:layout_below="@id/ordersummarytext"
         android:padding="10dp"
-        tools:listitem="@layout/element_cart_item" />
+        tools:listitem="@layout/element_cart_item"
+        android:overScrollMode="never"
+        />
 
 
     <LinearLayout
@@ -152,7 +171,7 @@
         android:layout_above="@id/proceedorderLayoutcart"
         android:id="@+id/delivery_layout"
         android:padding="5dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         >
         <LinearLayout
             android:layout_width="wrap_content"

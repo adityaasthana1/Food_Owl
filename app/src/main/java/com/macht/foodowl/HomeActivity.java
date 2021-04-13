@@ -102,10 +102,10 @@ public class HomeActivity extends AppCompatActivity {
                         temp = new HomeFragment(userDataAdapter);
                         break;
                     case R.id.nav_profile:
-                        temp = new NetworkErroFragment();
+                        temp = new ProfileFragment();
                         break;
                     case  R.id.nav_search:
-                        temp = new ProfileFragment();
+                        temp = new SearchFragment();
                         break;
 
                 }
