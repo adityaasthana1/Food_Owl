@@ -1,5 +1,6 @@
 package com.macht.foodowl.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,11 +35,17 @@ import com.macht.foodowl.Adapters.DeliveryDetail;
 import com.macht.foodowl.Adapters.FoodItem;
 import com.macht.foodowl.Adapters.FoodRecyclerAdapter;
 import com.macht.foodowl.DeliveryActivity;
+import com.macht.foodowl.PaymentActivity;
 import com.macht.foodowl.R;
+import com.razorpay.Checkout;
+import com.razorpay.OTP;
+import com.razorpay.PaymentResultListener;
+
+import org.json.JSONObject;
 
 import java.util.Map;
 
-public class CartOrderFragment extends Fragment {
+public class CartOrderFragment extends Fragment{
     RecyclerView recyclerView;
     FirebaseFirestore firebaseFirestore;
     CartRecyclerAdapter cartRecyclerAdapter;
@@ -100,7 +107,6 @@ public class CartOrderFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivityForResult(new Intent(getContext(), DeliveryActivity.class), 1);
-
             }
         });
 
@@ -113,6 +119,23 @@ public class CartOrderFragment extends Fragment {
                 }
                 FinalCart = cartRecyclerAdapter.getCartList();
                 GrandFinalAmount = cartRecyclerAdapter.getGrandFinalAmount();
+                Checkout checkout = new Checkout();
+                checkout.setKeyID("rzp_test_nRLHL0Vjnxh6ej");
+
+                JSONObject jsonObject = new JSONObject();
+                try{
+                    jsonObject.put("name","Food Owl");
+                    jsonObject.put("description", "Testing the payment feature of our application.");
+                    jsonObject.put("theme.color", "#e74c3c");
+                    jsonObject.put("currency" , "INR");
+                    jsonObject.put("amount",GrandFinalAmount*100);
+                    jsonObject.put("prefill.contact","9752778817");
+                    jsonObject.put("prefill.email","asthana.aditya1@gmail.com");
+                    checkout.open((Activity) getContext(),jsonObject);
+
+                }catch (Exception e){
+                    Log.d("PAYMENT_EXCEPTION", e.toString());
+                }
 
             }
         });
@@ -169,4 +192,7 @@ public class CartOrderFragment extends Fragment {
         super.onStop();
         cartRecyclerAdapter.stopListening();
     }
+
 }
+
+

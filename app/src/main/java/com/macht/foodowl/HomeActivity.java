@@ -43,6 +43,7 @@ import com.macht.foodowl.Fragments.SearchFragment;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class HomeActivity extends AppCompatActivity {
@@ -107,11 +108,14 @@ public class HomeActivity extends AppCompatActivity {
                     case  R.id.nav_search:
                         temp = new SearchFragment();
                         break;
-
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,temp).commit();
                 return true;
             }
         });
+    }
+    public boolean isConnected() throws InterruptedException, IOException {
+        String command = "ping -c 1 google.com";
+        return Runtime.getRuntime().exec(command).waitFor() == 0;
     }
 }

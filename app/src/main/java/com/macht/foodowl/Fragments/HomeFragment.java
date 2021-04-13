@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment {
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
     ShimmerFrameLayout orderFoodShimmer;
-    UserDataAdapter userDataAdapter;
+    UserDataAdapter userDataAdapter = null;
 
     public HomeFragment(){
         this.userDataAdapter = new UserDataAdapter();
@@ -55,11 +55,14 @@ public class HomeFragment extends Fragment {
         AboutUsLayout = view.findViewById(R.id.AboutUsLayout);
         ContactUsLayout = view.findViewById(R.id.contactus);
         UserName = view.findViewById(R.id.userFirstName);
-        UserName.setText(userDataAdapter.getFname());
 
-        HomeCarousel.setImageListener((position, imageView) -> imageView.setImageResource(OfferImages[position]));
+        if (userDataAdapter!=null) {
+            UserName.setText(userDataAdapter.getFname());
+            HomeCarousel.setImageListener((position, imageView) -> imageView.setImageResource(OfferImages[position]));
+        }
         OrderOnlineFoodLayout.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), OrderFoodActivity.class));
         });
+
     }
 }

@@ -41,6 +41,7 @@ public class DeliveryRecyclerAdapter extends FirestoreRecyclerAdapter<DeliveryDe
         holder.DeliveryElementName.setText(model.getFullname());
         holder.DeliveryElementAddress.setText(model.getFulladdress());
         holder.DeliveryElementPincode.setText(model.getPincode());
+        holder.ParentLayout.setOnClickListener(v->{});
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

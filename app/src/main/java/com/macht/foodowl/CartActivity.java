@@ -24,6 +24,7 @@ import com.macht.foodowl.Fragments.EmptyCartFragment;
 import com.macht.foodowl.Fragments.FoodLoadingFragment;
 import com.macht.foodowl.Fragments.NetworkErroFragment;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class CartActivity extends AppCompatActivity {
@@ -49,17 +50,21 @@ public class CartActivity extends AppCompatActivity {
             collectionReference.document("cartdetails").get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful() && task.getResult().exists()){
-                            getSupportFragmentManager().beginTransaction().replace(R.id.cart_framelayout,new CartOrderFragment(), "CART_ORDER_FRAGMENT").commit();
+                            getSupportFragmentManager().beginTransaction().replace(R.id.cart_framelayout,new CartOrderFragment(), "CART_ORDER_FRAGMENT").commitAllowingStateLoss();
                         }else{
-                            getSupportFragmentManager().beginTransaction().replace(R.id.cart_framelayout,new EmptyCartFragment()).commit();
+                            getSupportFragmentManager().beginTransaction().replace(R.id.cart_framelayout,new EmptyCartFragment()).commitAllowingStateLoss();
                         }
                     });
         }else {
-            getSupportFragmentManager().beginTransaction().replace(R.id.cart_framelayout, new NetworkErroFragment());
+            getSupportFragmentManager().beginTransaction().replace(R.id.cart_framelayout, new NetworkErroFragment()).commitAllowingStateLoss();
         }
 
 
 
+    }
+    public boolean isConnected() throws InterruptedException, IOException {
+        String command = "ping -c 1 google.com";
+        return Runtime.getRuntime().exec(command).waitFor() == 0;
     }
 
     boolean isNetworkConnected(){

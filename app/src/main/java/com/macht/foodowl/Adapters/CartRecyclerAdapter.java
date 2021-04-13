@@ -104,6 +104,7 @@ public class CartRecyclerAdapter extends FirestoreRecyclerAdapter<CartElement, C
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful() && task.getResult().exists()){
+                            Cart.remove(model.getFoodid());
                             CartDetails cartDetails = task.getResult().toObject(CartDetails.class);
                             TotalAmount = cartDetails.getTotalamount();
                             TotalAmount -= model.getValue();

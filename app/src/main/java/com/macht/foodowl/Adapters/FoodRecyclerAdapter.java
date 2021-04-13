@@ -21,6 +21,7 @@ import com.bumptech.glide.RequestManager;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -129,6 +130,12 @@ public class FoodRecyclerAdapter extends FirestoreRecyclerAdapter<FoodItem, Food
                     public void onSuccess(Uri uri) {
                         glide.load(uri).into(holder.imageView);
                     }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("FIREBASE_STORAGE", "Failed to get firebase storage image of " + model.getFoodid() + ", " + model.getFoodname());
+                    }
                 });
 
 
@@ -150,9 +157,6 @@ public class FoodRecyclerAdapter extends FirestoreRecyclerAdapter<FoodItem, Food
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 selectedquantity[0] = numberPicker.getValue();
-
-
-
                 CartReference.document("cartlist").collection("list").document(foodmodel.getFoodid())
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

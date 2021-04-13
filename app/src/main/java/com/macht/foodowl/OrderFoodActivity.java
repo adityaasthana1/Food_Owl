@@ -14,6 +14,8 @@ import com.macht.foodowl.Fragments.FoodLoadingFragment;
 import com.macht.foodowl.Fragments.NetworkErroFragment;
 import com.macht.foodowl.Fragments.OrderFoodFragment;
 
+import java.io.IOException;
+
 public class OrderFoodActivity extends AppCompatActivity {
     FrameLayout frameLayout;
     public final static int LOAD_TIME = 3000;
@@ -22,20 +24,25 @@ public class OrderFoodActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_food);
         frameLayout = findViewById(R.id.framelayout_orderfood);
-        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_orderfood,new FoodLoadingFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_orderfood,new FoodLoadingFragment()).commitAllowingStateLoss();
         if (isNetworkConnected()) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_orderfood,new OrderFoodFragment(), "ORDER_FOOD_FRAGMENT").commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_orderfood,new OrderFoodFragment(), "ORDER_FOOD_FRAGMENT").commitAllowingStateLoss();
                 }
             },LOAD_TIME);
 
         }else{
-            getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_orderfood,new NetworkErroFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_orderfood,new NetworkErroFragment()).commitAllowingStateLoss();
         }
 
 
+    }
+
+    public boolean isConnected() throws InterruptedException, IOException {
+        String command = "ping -c 1 google.com";
+        return Runtime.getRuntime().exec(command).waitFor() == 0;
     }
 
     boolean isNetworkConnected(){
