@@ -119,23 +119,6 @@ public class CartOrderFragment extends Fragment{
                 }
                 FinalCart = cartRecyclerAdapter.getCartList();
                 GrandFinalAmount = cartRecyclerAdapter.getGrandFinalAmount();
-                Checkout checkout = new Checkout();
-                checkout.setKeyID("rzp_test_nRLHL0Vjnxh6ej");
-
-                JSONObject jsonObject = new JSONObject();
-                try{
-                    jsonObject.put("name","Food Owl");
-                    jsonObject.put("description", "Testing the payment feature of our application.");
-                    jsonObject.put("theme.color", "#e74c3c");
-                    jsonObject.put("currency" , "INR");
-                    jsonObject.put("amount",GrandFinalAmount*100);
-                    jsonObject.put("prefill.contact","9752778817");
-                    jsonObject.put("prefill.email","asthana.aditya1@gmail.com");
-                    checkout.open((Activity) getContext(),jsonObject);
-
-                }catch (Exception e){
-                    Log.d("PAYMENT_EXCEPTION", e.toString());
-                }
 
             }
         });
