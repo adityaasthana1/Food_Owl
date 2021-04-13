@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddDeliveryAddressActivity">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/deliverydetailactionbar"
+        android:gravity="center_vertical"
+        >
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/backbutton"
+            android:padding="5dp"
+            android:id="@+id/adddeliverybackbutton"
+            app:tint="@color/black" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delivery Details"
+            android:textColor="#000"
+            android:fontFamily="@font/ralewayxtrabold"
+            android:textSize="16dp"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#848484"
+        android:id="@+id/actionbarline"
+        android:layout_below="@id/deliverydetailactionbar"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:id="@+id/deliverydetailmenu"
+        android:layout_below="@id/actionbarline"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="11dp"
+            android:text="Enter recipient's name and address before adding their address."
+            android:textColor="#848484"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/edittextshape"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="13dp"
+            android:hint="Full Name"
+            android:paddingStart="20dp"
+            android:id="@+id/add_manually_fullname"
+            android:inputType="textPersonName"
+            android:paddingEnd="50dp"
+            android:layout_marginTop="5dp"
+            android:textColorHint="#848484"
+            android:textColor="#000"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/edittextshape"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="13dp"
+            android:hint="Mobile Number"
+            android:paddingStart="20dp"
+            android:inputType="text"
+            android:paddingEnd="20dp"
+            android:id="@+id/add_manually_mobilenumber"
+            android:layout_marginTop="5dp"
+            android:textColorHint="#848484"
+            android:textColor="#000"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:id="@+id/add_current_deliveryaddress"
+            android:background="@drawable/white_nowhere"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Location (UNAVAILABLE RIGHT NOW)"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/ralewayxtrabold"
+                android:textColor="@color/black"
+                android:drawableStart="@drawable/ic_baseline_location_on_24"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#848484"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/white_nowhere"
+            android:id="@+id/add_manually_deliveryaddress"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Manually"
+                android:fontFamily="@font/ralewayxtrabold"
+                android:textColor="@color/black"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_baseline_add_24"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#848484"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/deliverydetailmenu"
+        android:layout_above="@id/add_manually_addressbutton"
+        android:id="@+id/addnewaddress_framelayout"
+        android:layout_marginTop="5dp"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/red"
+        android:gravity="center"
+        android:id="@+id/add_manually_addressbutton"
+        android:layout_alignParentBottom="true"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Address"
+            android:textColor="@color/white"
+            android:fontFamily="@font/robotblack"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

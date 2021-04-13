@@ -77,7 +77,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="₹200"
                 android:textSize="16dp"
                 android:fontFamily="@font/robotoregular"
                 android:layout_marginStart="5dp"
@@ -108,7 +107,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="₹30"
                 android:textSize="16dp"
                 android:fontFamily="@font/robotoregular"
                 android:layout_marginStart="5dp"
@@ -141,7 +139,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="₹230"
                 android:textSize="16dp"
                 android:fontFamily="@font/robotblack"
                 android:layout_marginStart="5dp"
@@ -205,11 +202,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="127/5 Shastri Nagar Colony, naer Excellence School, Ujjain, Madhya Pradesh 456010"
             android:textSize="14dp"
             android:layout_marginEnd="5dp"
             android:fontFamily="@font/robotoregular"
             android:layout_marginStart="5dp"
+            android:paddingEnd="5dp"
             android:textColor="#848484"
             android:textStyle="normal"
             android:id="@+id/delivery_address_details"

@@ -142,7 +142,8 @@ public class CartOrderFragment extends Fragment {
                     CurrentDelivery = data.getParcelableExtra("NEW_DELIVERY_ADDRESS");
                     Log.d("CURRENT_DELIVERY", CurrentDelivery.getAddressid() + " " + CurrentDelivery.getHousenumber() + " " + CurrentDelivery.getArea() + " " + CurrentDelivery.getCity());
                     DeliveryChange.setText(R.string.change);
-                    String address = CurrentDelivery.getFulladdress();
+                    String address = CurrentDelivery.getFullname() + ", " + CurrentDelivery.getHousenumber() + ", " + CurrentDelivery.getArea() + ", " + CurrentDelivery.getCity() + ", " + CurrentDelivery.getState();
+                    CurrentDelivery.setFulladdress(address);
                     DeliveryAddress.setText(address);
                     firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid())
                             .collection("currentdetail")

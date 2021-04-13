@@ -4,33 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".DeliveryActivity">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
         android:id="@+id/ordersummarytext"
+        android:gravity="center_vertical"
         >
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/backbutton"
+            android:padding="5dp"
+            android:id="@+id/deliverybackbutton"
+            app:tint="@color/black" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Delivery Details"
             android:textColor="#000"
             android:fontFamily="@font/ralewayxtrabold"
-            android:layout_gravity="start"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
             android:textSize="16dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:textSize="11dp"
-            android:text="Here is the summary of what you selected from the menu. If you don't like any entry, delete it from the cart and modify cart again from the menu!"
-            android:textColor="#848484"
-            />
+
     </LinearLayout>
 
    <LinearLayout
@@ -53,7 +52,7 @@
            android:layout_height="wrap_content"
            android:text="Add Delivery Address"
            android:fontFamily="@font/ralewayxtrabold"
-           android:textColor="@color/black"
+           android:textColor="#848484"
            android:drawableStart="@drawable/ic_baseline_add_24"
            android:layout_marginStart="20dp"
            android:layout_marginEnd="20dp"

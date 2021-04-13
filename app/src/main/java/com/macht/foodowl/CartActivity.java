@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -19,6 +22,7 @@ import com.macht.foodowl.Adapters.CartLoadingFragment;
 import com.macht.foodowl.Fragments.CartOrderFragment;
 import com.macht.foodowl.Fragments.EmptyCartFragment;
 import com.macht.foodowl.Fragments.FoodLoadingFragment;
+import com.macht.foodowl.Fragments.NetworkErroFragment;
 
 import java.util.HashMap;
 
@@ -40,18 +44,28 @@ public class CartActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.cart_framelayout,new CartLoadingFragment()).commit();
         firebaseFirestore = FirebaseFirestore.getInstance();
         collectionReference = firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid()).collection("cart");
-        collectionReference.document("cartdetails").get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+        if (isNetworkConnected()){
+            collectionReference.document("cartdetails").get()
+                    .addOnCompleteListener(task -> {
                         if (task.isSuccessful() && task.getResult().exists()){
                             getSupportFragmentManager().beginTransaction().replace(R.id.cart_framelayout,new CartOrderFragment(), "CART_ORDER_FRAGMENT").commit();
                         }else{
                             getSupportFragmentManager().beginTransaction().replace(R.id.cart_framelayout,new EmptyCartFragment()).commit();
                         }
-                    }
-                });
+                    });
+        }else {
+            getSupportFragmentManager().beginTransaction().replace(R.id.cart_framelayout, new NetworkErroFragment());
+        }
 
 
+
+    }
+
+    boolean isNetworkConnected(){
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

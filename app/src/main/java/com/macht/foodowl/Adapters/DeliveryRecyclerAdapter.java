@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -40,7 +41,7 @@ public class DeliveryRecyclerAdapter extends FirestoreRecyclerAdapter<DeliveryDe
         holder.DeliveryElementName.setText(model.getFullname());
         holder.DeliveryElementAddress.setText(model.getFulladdress());
         holder.DeliveryElementPincode.setText(model.getPincode());
-        holder.DeliveryElementName.setOnClickListener(new View.OnClickListener() {
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid())
@@ -79,6 +80,7 @@ public class DeliveryRecyclerAdapter extends FirestoreRecyclerAdapter<DeliveryDe
         TextView DeliveryElementName,DeliveryElementAddress, DeliveryElementPincode;
         Button DeliveryElementDelete;
         RelativeLayout ParentLayout;
+        LinearLayout linearLayout;
 
         public DeliveryRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -87,6 +89,7 @@ public class DeliveryRecyclerAdapter extends FirestoreRecyclerAdapter<DeliveryDe
             DeliveryElementPincode = itemView.findViewById(R.id.element_pincode);
             DeliveryElementDelete = itemView.findViewById(R.id.element_delete);
             ParentLayout = itemView.findViewById(R.id.list_element_parent);
+            linearLayout = itemView.findViewById(R.id.delivery_address_container);
         }
     }
 

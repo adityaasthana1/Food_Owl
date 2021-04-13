@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class DeliveryDetail implements Parcelable {
-    String addressid,fullname, mobilenumber,pincode,housenumber,area,landmark,city,state,fulladdress;
+    String addressid,fullname, mobilenumber,pincode,housenumber,area,landmark,city,state,fulladdress,latitude,longitude;
 
     public DeliveryDetail(){}
 
@@ -18,7 +18,24 @@ public class DeliveryDetail implements Parcelable {
         this.landmark = landmark;
         this.city = city;
         this.state = state;
-        this.fulladdress = fullname + ", " + housenumber + ", " + area + ", " + city;
+        this.fulladdress = fulladdress;
+        this.latitude = null;
+        this.longitude = null;
+    }
+
+    public DeliveryDetail(String addressid, String fullname, String mobilenumber, String pincode, String housenumber, String area, String landmark, String city, String state, String fulladdress, String latitude, String longitude) {
+        this.addressid = addressid;
+        this.fullname = fullname;
+        this.mobilenumber = mobilenumber;
+        this.pincode = pincode;
+        this.housenumber = housenumber;
+        this.area = area;
+        this.landmark = landmark;
+        this.city = city;
+        this.state = state;
+        this.fulladdress = fulladdress;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     protected DeliveryDetail(Parcel in) {

@@ -27,7 +27,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
-                android:src="@drawable/shahisamosa"
                 android:scaleType="centerCrop"
                 android:id="@+id/food_element_image"
                 />
@@ -43,7 +42,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Shahi Samosa"
                 android:textSize="14dp"
                 android:fontFamily="@font/lato"
                 android:textColor="#000"
@@ -55,7 +53,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cheese bursted baked samosa with special potato filling served with veggies, exotic sauces with a sprinkle of our special masalas."
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="10dp"
                 android:textSize="11dp"
@@ -72,7 +69,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bestseller"
                     android:textColor="@color/white"
                     android:padding="4dp"
                     android:textSize="10dp"
@@ -90,7 +86,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Price : 120/-"
                     android:textSize="13dp"
                     android:fontFamily="@font/robotoregular"
                     android:textColor="@color/black"

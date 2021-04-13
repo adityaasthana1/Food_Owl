@@ -1,6 +1,9 @@
 package com.macht.foodowl.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -88,8 +91,19 @@ public class OrderFoodFragment extends Fragment {
         Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("ORDER_FOOD_FRAGMENT");
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.detach(fragment);
-        fragmentTransaction.attach(fragment);
-        fragmentTransaction.commit();
+        if (isNetworkConnected()){
+            fragmentTransaction.attach(fragment);
+            fragmentTransaction.commit();
+        }else{
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_orderfood, new NetworkErroFragment()).commit();
+        }
 
+
+    }
+    boolean isNetworkConnected(){
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

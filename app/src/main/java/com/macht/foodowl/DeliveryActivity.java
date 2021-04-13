@@ -1,5 +1,6 @@
 package com.macht.foodowl;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,12 +25,19 @@ public class DeliveryActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     DeliveryRecyclerAdapter adapter;
     DeliveryDetail deliveryDetail;
+    public static final int ADD_DELIVERY_ADDRESS = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery);
         recyclerView = findViewById(R.id.delivery_recyclerview);
+        AddDeliveryAddressButton = findViewById(R.id.adddeliveryaddress);
+
+        AddDeliveryAddressButton.setOnClickListener(v -> {
+            startActivityForResult(new Intent(DeliveryActivity.this , AddDeliveryAddressActivity.class) , ADD_DELIVERY_ADDRESS);
+        });
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         SetUpRecyclerView();
@@ -47,6 +55,18 @@ public class DeliveryActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(DeliveryActivity.this));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data!=null){
+            deliveryDetail = data.getParcelableExtra("ADDED_DELIVERY_ADDRESS");
+            Intent intent = new Intent();
+            intent.putExtra("NEW_DELIVERY_ADDRESS" , deliveryDetail);
+            setResult(Activity.RESULT_OK, intent);
+            finish();
+        }
     }
 
     @Override

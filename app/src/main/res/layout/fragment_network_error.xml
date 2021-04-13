@@ -15,9 +15,9 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:id="@+id/lottianimation"
-        app:lottie_fileName="networkerror.json"
+        app:lottie_fileName="errorconnection.json"
         app:lottie_autoPlay="true"
-        app:lottie_loop="true"
+        app:lottie_loop="false"
         />
     <TextView
         android:layout_width="wrap_content"
