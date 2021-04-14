@@ -1,8 +1,11 @@
 package com.macht.foodowl.Fragments;
 
 import android.app.Activity;
+import android.app.Application;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,27 +25,36 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.WriteBatch;
 import com.macht.foodowl.Adapters.CartDetails;
 import com.macht.foodowl.Adapters.CartElement;
 import com.macht.foodowl.Adapters.CartRecyclerAdapter;
 import com.macht.foodowl.Adapters.DeliveryDetail;
 import com.macht.foodowl.Adapters.FoodItem;
 import com.macht.foodowl.Adapters.FoodRecyclerAdapter;
+import com.macht.foodowl.Adapters.OrderAdapter;
+import com.macht.foodowl.Adapters.UserOrder;
 import com.macht.foodowl.DeliveryActivity;
 import com.macht.foodowl.PaymentActivity;
 import com.macht.foodowl.R;
+import com.macht.foodowl.TrackOrderActivity;
 import com.razorpay.Checkout;
 import com.razorpay.OTP;
 import com.razorpay.PaymentResultListener;
 
 import org.json.JSONObject;
 
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.Map;
 
 public class CartOrderFragment extends Fragment{
@@ -54,12 +66,12 @@ public class CartOrderFragment extends Fragment{
     FirebaseAuth firebaseAuth;
     LinearLayout PlaceOrderLayout;
     Map<String, CartElement> FinalCart;
-    int GrandFinalAmount;
+    int ItemTotal,GrandFinalAmount, deliveryAmount;
     TextView DeliveryChange, DeliveryAddress, ApplyCouponText;
     DeliveryDetail CurrentDelivery = null;
     public static final int DELIVERY_ADDRESS_OPERATION = 1;
     public static final int PAYMENT_OPERATION = 2;
-
+    ProgressDialog progressDialog;
 
     @Nullable
     @Override
@@ -99,6 +111,22 @@ public class CartOrderFragment extends Fragment{
                         DeliveryChange.setText(R.string.add);
                     }
                 });
+        /*
+        firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid())
+                .collection("cart")
+                .document("cartdetails")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful() && task.getResult().exists()) {
+                            CartDetails cartDetails = task.getResult().toObject(CartDetails.class);
+                            ItemTotal = cartDetails.getTotalamount();
+                            GrandFinalAmount = ItemTotal+30;
+                        }
+                    }
+                });
+         */
 
         PlaceOrderLayout = view.findViewById(R.id.placeorderlayout);
         SetUpCartRecycletView(view);
@@ -110,17 +138,39 @@ public class CartOrderFragment extends Fragment{
             }
         });
 
-        PlaceOrderLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CurrentDelivery == null){
-                    Toast.makeText(getContext(), "Please Add Delivery Address.", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                FinalCart = cartRecyclerAdapter.getCartList();
-                GrandFinalAmount = cartRecyclerAdapter.getGrandFinalAmount();
+        PlaceOrderLayout.setOnClickListener(v -> {
+            deliveryAmount = 30;
+            GrandFinalAmount = cartRecyclerAdapter.getGrandFinalAmount();
+            ItemTotal = cartRecyclerAdapter.getTotalAmount();
+            FinalCart = cartRecyclerAdapter.getCartList();
+            Map<String, CartElement> CartFinal = FinalCart;
+            firebaseFirestore.collection("random")
+                    .document("list")
+                    .set(CartFinal);
 
+            if (CurrentDelivery == null){
+                Toast.makeText(getContext(), "Please Add Delivery Address.", Toast.LENGTH_LONG).show();
+                return;
             }
+            if (GrandFinalAmount == 0){
+                Toast.makeText(getContext(), "Grand Total 0", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            progressDialog = new ProgressDialog(getContext());
+            progressDialog.setTitle("Placing Order");
+            progressDialog.setMessage("Please wait while we are processing your order.");
+            progressDialog.show();
+            Intent intent = new Intent(getContext(),PaymentActivity.class);
+            String full_address = CurrentDelivery.getFullname() + ", " + CurrentDelivery.getHousenumber() + ", " + CurrentDelivery.getArea() + ", " + CurrentDelivery.getCity() + ", " + CurrentDelivery.getState();
+            CurrentDelivery.setFulladdress(full_address);
+            OrderAdapter orderAdapter= new OrderAdapter(null,new Date().toString(),"placed",
+                    GrandFinalAmount,ItemTotal,deliveryAmount,
+                    0,CurrentDelivery,new CartDetails(GrandFinalAmount,new Date().toString())
+                    ,CartFinal);
+            orderAdapter.setCart_list(CartFinal);
+            intent.putExtra("FINAL_PAYMENT", GrandFinalAmount);
+            intent.putExtra("ORDER_OBJECT", orderAdapter);
+            startActivityForResult(intent, PAYMENT_OPERATION);
         });
 
     }
@@ -159,7 +209,58 @@ public class CartOrderFragment extends Fragment{
                 }else Toast.makeText(getContext() , "Nothing was returned.", Toast.LENGTH_SHORT).show();
                 break;
             case PAYMENT_OPERATION:
-                break;
+                if (data!=null){
+
+                    String confirmation =data.getStringExtra("CONFIRMATION");
+                    String message = data.getStringExtra("MESSAGE");
+                    String order_id =  data.getStringExtra("ORDER_ID");
+                    if (confirmation.equals("TRUE")){
+                        //Place Order
+                        progressDialog.dismiss();
+                        Intent intent = new Intent(getContext(),TrackOrderActivity.class);
+                        intent.putExtra("ORDER_ID", order_id);
+                        CartListReference.get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        if (task.isSuccessful()){
+
+                                            for(QueryDocumentSnapshot document : task.getResult()){
+                                                CartElement element = document.toObject(CartElement.class);
+                                                firebaseFirestore.collection("orders")
+                                                        .document(order_id)
+                                                        .collection("cartlist")
+                                                        .document(element.getFoodid())
+                                                        .set(element);
+
+                                                String key = document.getString("foodid");
+                                                CartListReference.document(key)
+                                                        .delete();
+                                            }
+                                        }
+
+                                    }
+                                });
+
+                       CartDetailsReference.delete()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        startActivity(intent);
+                                        getActivity().finish();
+                                    }
+                                });
+
+
+
+                    }else if (confirmation.equals("FALSE")){
+                        //PaymentFailed
+                        Toast.makeText(getContext() , message, Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }//DoNothing
+
+                }
+
 
         }
     }

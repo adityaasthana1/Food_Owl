@@ -2,6 +2,7 @@ package com.macht.foodowl.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +82,8 @@ public class CartRecyclerAdapter extends FirestoreRecyclerAdapter<CartElement, C
     @Override
     protected void onBindViewHolder(@NonNull CartRecyclerViewHolder holder, int position, @NonNull CartElement model) {
         Cart.put(model.getFoodid(),model);
+        Log.d("HASHMAP", "Added" + model.getFoodname()+ " TO LIST");
+        Log.d("HASHMAP_VALUE", Cart.get(model.getFoodid()).toString());
         holder.CartElementName.setText(model.getFoodname());
         String quantity = "x" + model.getQuantity();
         holder.CartElementQuantity.setText(quantity);
@@ -135,7 +138,9 @@ public class CartRecyclerAdapter extends FirestoreRecyclerAdapter<CartElement, C
     public int getGrandFinalAmount(){
         return GrandFinalAmount;
     }
-
+    public int getTotalAmount(){
+        return TotalAmount;
+    }
     @NonNull
     @Override
     public CartRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

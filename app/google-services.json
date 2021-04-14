@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "756813050205-692ahalbrebr1tht2eaoln5vep44evmb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.macht.foodowl",
+            "certificate_hash": "48e813c5de6f8c17940064caf936a780a1c3a130"
+          }
+        },
+        {
           "client_id": "756813050205-d362oeun98jodn9gbvv7cqi05ta8t0q1.apps.googleusercontent.com",
           "client_type": 3
         }
