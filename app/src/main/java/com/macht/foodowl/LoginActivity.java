@@ -180,13 +180,13 @@ public class LoginActivity extends AppCompatActivity {
                                                         String FirstName = account.getGivenName();
                                                         String LastName = account.getFamilyName();
                                                         String EmailId = account.getEmail();
-                                                        UserDataAdapter userDataAdapter = new UserDataAdapter(FirstName,LastName,EmailId,"none");
+                                                        String userPhotoUri = account.getPhotoUrl().toString();
+                                                        UserDataAdapter userDataAdapter = new UserDataAdapter(FirstName,LastName,EmailId,"none", userPhotoUri);
                                                         firebaseFirestore.collection("users")
                                                                 .document(firebaseAuth.getCurrentUser().getUid())
                                                                 .set(userDataAdapter);
                                                         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(LoginActivity.this, gso);
                                                         googleSignInClient.signOut();
-
                                                     }
                                                 }
                                             });

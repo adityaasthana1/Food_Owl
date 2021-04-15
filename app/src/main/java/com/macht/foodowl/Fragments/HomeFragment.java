@@ -1,5 +1,6 @@
 package com.macht.foodowl.Fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.auth.User;
 import com.macht.foodowl.Adapters.UserDataAdapter;
+import com.macht.foodowl.LoginActivity;
 import com.macht.foodowl.OrderFoodActivity;
 import com.macht.foodowl.R;
 import com.synnapps.carouselview.CarouselView;
@@ -55,6 +57,7 @@ public class HomeFragment extends Fragment {
         AboutUsLayout = view.findViewById(R.id.AboutUsLayout);
         ContactUsLayout = view.findViewById(R.id.contactus);
         UserName = view.findViewById(R.id.userFirstName);
+        firebaseAuth = FirebaseAuth.getInstance();
 
         if (userDataAdapter!=null) {
             UserName.setText(userDataAdapter.getFname());
@@ -62,6 +65,13 @@ public class HomeFragment extends Fragment {
         }
         OrderOnlineFoodLayout.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), OrderFoodActivity.class));
+        });
+
+        ContactUsLayout.setOnClickListener(v -> {
+            firebaseAuth.signOut();
+            startActivity(new Intent(getContext(), LoginActivity.class));
+            getActivity().finish();
+
         });
 
     }

@@ -62,6 +62,7 @@
             android:inputType="textEmailAddress"
             android:paddingEnd="20dp"
             android:layout_marginTop="30dp"
+            android:outlineAmbientShadowColor="@color/red"
             android:textColorHint="#848484"
             android:textColor="#000"/>
 
@@ -143,7 +144,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="60dp"
             android:orientation="horizontal"
             android:layout_gravity="bottom"
             android:gravity="center"

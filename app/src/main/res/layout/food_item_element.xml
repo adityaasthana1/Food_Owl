@@ -29,6 +29,7 @@
                 android:layout_gravity="start"
                 android:scaleType="centerCrop"
                 android:id="@+id/food_element_image"
+                android:background="@color/white"
                 />
 
         </androidx.cardview.widget.CardView>
