@@ -202,52 +202,16 @@ public class CartOrderFragment extends Fragment{
                 if (data!=null){
 
                     String confirmation =data.getStringExtra("CONFIRMATION");
-                    String message = data.getStringExtra("MESSAGE");
-                    String order_id =  data.getStringExtra("ORDER_ID");
-                    OrderAdapter orderAdapter = data.getParcelableExtra("ORDER");
                     final String[] complete_string = {""};
                     if (confirmation.equals("TRUE")){
                         //Place Order
+                        Toast.makeText(getContext(), "Order Placed Successfully.", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
-                        Intent intent = new Intent(getContext(),TrackOrderActivity.class);
-                        intent.putExtra("ORDER", orderAdapter);
-                        CartListReference.get()
-                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                        if (task.isSuccessful()){
-
-                                            for(QueryDocumentSnapshot document : task.getResult()){
-                                                CartElement element = document.toObject(CartElement.class);
-                                                complete_string[0] = element.getQuantity() + "x" + element.getFoodname() + " | ";
-                                                firebaseFirestore.collection("orders")
-                                                        .document(order_id)
-                                                        .collection("cartlist")
-                                                        .document(element.getFoodid())
-                                                        .set(element);
-
-                                                String key = document.getString("foodid");
-                                                CartListReference.document(key)
-                                                        .delete();
-                                            }
-                                        }
-
-                                    }
-                                });
-                       CartDetailsReference.delete()
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        startActivity(intent);
-                                        getActivity().finish();
-                                    }
-                                });
-
-
+                        ((Activity)getContext()).finish();
 
                     }else if (confirmation.equals("FALSE")){
                         //PaymentFailed
-                        Toast.makeText(getContext() , message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext() , "PAYMENT ERROR", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }//DoNothing
 
