@@ -53,9 +53,11 @@ import com.razorpay.PaymentResultListener;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 public class CartOrderFragment extends Fragment{
     RecyclerView recyclerView;
@@ -72,6 +74,7 @@ public class CartOrderFragment extends Fragment{
     public static final int DELIVERY_ADDRESS_OPERATION = 1;
     public static final int PAYMENT_OPERATION = 2;
     ProgressDialog progressDialog;
+    String Final_Food_String;
 
     @Nullable
     @Override
@@ -111,26 +114,9 @@ public class CartOrderFragment extends Fragment{
                         DeliveryChange.setText(R.string.add);
                     }
                 });
-        /*
-        firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid())
-                .collection("cart")
-                .document("cartdetails")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful() && task.getResult().exists()) {
-                            CartDetails cartDetails = task.getResult().toObject(CartDetails.class);
-                            ItemTotal = cartDetails.getTotalamount();
-                            GrandFinalAmount = ItemTotal+30;
-                        }
-                    }
-                });
-         */
 
         PlaceOrderLayout = view.findViewById(R.id.placeorderlayout);
         SetUpCartRecycletView(view);
-
         DeliveryChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,10 +129,13 @@ public class CartOrderFragment extends Fragment{
             GrandFinalAmount = cartRecyclerAdapter.getGrandFinalAmount();
             ItemTotal = cartRecyclerAdapter.getTotalAmount();
             FinalCart = cartRecyclerAdapter.getCartList();
+            Final_Food_String = cartRecyclerAdapter.getTotalString();
+
             Map<String, CartElement> CartFinal = FinalCart;
             firebaseFirestore.collection("random")
                     .document("list")
                     .set(CartFinal);
+
 
             if (CurrentDelivery == null){
                 Toast.makeText(getContext(), "Please Add Delivery Address.", Toast.LENGTH_LONG).show();
@@ -163,10 +152,11 @@ public class CartOrderFragment extends Fragment{
             Intent intent = new Intent(getContext(),PaymentActivity.class);
             String full_address = CurrentDelivery.getFullname() + ", " + CurrentDelivery.getHousenumber() + ", " + CurrentDelivery.getArea() + ", " + CurrentDelivery.getCity() + ", " + CurrentDelivery.getState();
             CurrentDelivery.setFulladdress(full_address);
-            OrderAdapter orderAdapter= new OrderAdapter(null,new Date().toString(),"placed",
+            OrderAdapter orderAdapter= new OrderAdapter(null,firebaseAuth.getCurrentUser().getUid(),
+                    new Date().toString(),"active","placed",
                     GrandFinalAmount,ItemTotal,deliveryAmount,
                     0,CurrentDelivery,new CartDetails(GrandFinalAmount,new Date().toString())
-                    ,CartFinal);
+                    ,Final_Food_String,CartFinal);
             orderAdapter.setCart_list(CartFinal);
             intent.putExtra("FINAL_PAYMENT", GrandFinalAmount);
             intent.putExtra("ORDER_OBJECT", orderAdapter);
@@ -214,11 +204,13 @@ public class CartOrderFragment extends Fragment{
                     String confirmation =data.getStringExtra("CONFIRMATION");
                     String message = data.getStringExtra("MESSAGE");
                     String order_id =  data.getStringExtra("ORDER_ID");
+                    OrderAdapter orderAdapter = data.getParcelableExtra("ORDER");
+                    final String[] complete_string = {""};
                     if (confirmation.equals("TRUE")){
                         //Place Order
                         progressDialog.dismiss();
                         Intent intent = new Intent(getContext(),TrackOrderActivity.class);
-                        intent.putExtra("ORDER_ID", order_id);
+                        intent.putExtra("ORDER", orderAdapter);
                         CartListReference.get()
                                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                     @Override
@@ -227,6 +219,7 @@ public class CartOrderFragment extends Fragment{
 
                                             for(QueryDocumentSnapshot document : task.getResult()){
                                                 CartElement element = document.toObject(CartElement.class);
+                                                complete_string[0] = element.getQuantity() + "x" + element.getFoodname() + " | ";
                                                 firebaseFirestore.collection("orders")
                                                         .document(order_id)
                                                         .collection("cartlist")
@@ -241,7 +234,6 @@ public class CartOrderFragment extends Fragment{
 
                                     }
                                 });
-
                        CartDetailsReference.delete()
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override

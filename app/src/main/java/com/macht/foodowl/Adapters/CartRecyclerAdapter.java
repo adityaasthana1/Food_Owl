@@ -26,6 +26,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.macht.foodowl.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,6 +41,7 @@ public class CartRecyclerAdapter extends FirestoreRecyclerAdapter<CartElement, C
     TextView ItemPrice, DeliveryCharges,FinalAmount;
     TextView DeliveryChange, DeliveryAddress, ApplyCouponText;
     LinearLayout PlaceOrderLayout;
+    ArrayList<CartElement> OrderFoodNames;
 
 
     public CartRecyclerAdapter(@NonNull FirestoreRecyclerOptions<CartElement> options , View view, Context context) {
@@ -48,6 +50,7 @@ public class CartRecyclerAdapter extends FirestoreRecyclerAdapter<CartElement, C
         CartListReference = FirebaseFirestore.getInstance().collection("users").document(firebaseAuth.getCurrentUser().getUid()).collection("cart")
                 .document("cartlist").collection("list");
         CartDetailsReference = FirebaseFirestore.getInstance().collection("users").document(firebaseAuth.getCurrentUser().getUid()).collection("cart").document("cartdetails");
+        OrderFoodNames = new ArrayList<>();
         Cart = new HashMap<>();
         this.context = context;
         this.view = view;
@@ -82,6 +85,7 @@ public class CartRecyclerAdapter extends FirestoreRecyclerAdapter<CartElement, C
     @Override
     protected void onBindViewHolder(@NonNull CartRecyclerViewHolder holder, int position, @NonNull CartElement model) {
         Cart.put(model.getFoodid(),model);
+        OrderFoodNames.add(model);
         Log.d("HASHMAP", "Added" + model.getFoodname()+ " TO LIST");
         Log.d("HASHMAP_VALUE", Cart.get(model.getFoodid()).toString());
         holder.CartElementName.setText(model.getFoodname());
@@ -122,6 +126,11 @@ public class CartRecyclerAdapter extends FirestoreRecyclerAdapter<CartElement, C
                             String grandtotalamount = "₹" + GrandFinalAmount;
                             FinalAmount.setText(grandtotalamount);
                             Cart.remove(model.getFoodid());
+                            for (CartElement e : OrderFoodNames){
+                                if (e.getFoodid().equals(model.foodid)){
+                                    OrderFoodNames.remove(e);
+                                }
+                            }
                             if (TotalAmount==0){
                                 ((Activity)context).finish();
                                 CartDetailsReference.delete();
@@ -140,6 +149,14 @@ public class CartRecyclerAdapter extends FirestoreRecyclerAdapter<CartElement, C
     }
     public int getTotalAmount(){
         return TotalAmount;
+    }
+    public String getTotalString(){
+        String final_string = "";
+        for (CartElement e : OrderFoodNames){
+            final_string  = e.getQuantity() + "x" + e.getFoodname() + " | ";
+            break;
+        }
+        return final_string;
     }
     @NonNull
     @Override

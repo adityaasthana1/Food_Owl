@@ -20,8 +20,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -33,11 +35,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.auth.User;
 import com.macht.foodowl.Adapters.UserDataAdapter;
 import com.macht.foodowl.Fragments.HomeFragment;
 import com.macht.foodowl.Fragments.LoadingFragment;
 import com.macht.foodowl.Fragments.NetworkErroFragment;
+import com.macht.foodowl.Fragments.OrderFragment;
 import com.macht.foodowl.Fragments.ProfileFragment;
 import com.macht.foodowl.Fragments.SearchFragment;
 import com.synnapps.carouselview.CarouselView;
@@ -107,6 +111,9 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case  R.id.nav_search:
                         temp = new SearchFragment();
+                        break;
+                    case R.id.nav_trackorder:
+                        temp = new OrderFragment();
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,temp).commit();

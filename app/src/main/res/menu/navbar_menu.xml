@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/nav_dashboard"
-        android:title="Dashboard"
+        android:title="Home"
         android:icon="@drawable/ic_baseline_dashboard_24"/>
+
+    <item android:id="@+id/nav_trackorder"
+        android:title="Track Orders"
+        android:icon="@drawable/ic_baseline_track_changes_24"/>
 
     <item android:title="Search"
         android:id="@+id/nav_search"

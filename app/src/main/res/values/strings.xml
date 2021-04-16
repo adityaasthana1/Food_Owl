@@ -12,4 +12,8 @@
     <string name="change"><u>Change</u></string>
     <string name="place_order"><u>Place Order</u></string>
     <string name="add"><u>Add Address</u></string>
+    <string name="order_placed">Sit back and relax. It usually takes 5–10 minutes for an order to be processed! Our representative will soon be accepting your order.</string>
+    <string name="order_accepeted">Your order has been accepted by our representatives. Relax, till we are preparing your order and assign you one of our delivery agents.</string>
+    <string name="order_onway">Your order have been prepared with love and now its on the way to you! Hold your cravings till our delivery agent knock on your door!</string>
+    <string name="order_delivered">Your order has been delivered successfully! Hope you enjoyed your meal. And if you did, We would appreciate if you consider reviewing our service from the app.</string>
 </resources>

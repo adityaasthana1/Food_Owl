@@ -132,6 +132,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
                             intent.putExtra("ORDER_ID", s);
                             intent.putExtra("CONFIRMATION", confirmation);
                             intent.putExtra("MESSAGE",message);
+                            intent.putExtra("ORDER", orderAdapter);
                             setResult(Activity.RESULT_OK,intent);
                             Toast.makeText(PaymentActivity.this, "OrderPlaced!", Toast.LENGTH_SHORT).show();
                             finish();

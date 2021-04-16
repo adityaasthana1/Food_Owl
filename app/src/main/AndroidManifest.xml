@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOwl"
         tools:replace="android:theme">
-        <activity android:name=".TrackOrderActivity"></activity>
+        <activity android:name=".OrderActivity"></activity>
+        <activity android:name=".TrackOrderActivity" />
         <activity android:name=".AddDeliveryAddressActivity" />
         <activity android:name=".DeliveryActivity" />
         <activity android:name=".CartActivity" />

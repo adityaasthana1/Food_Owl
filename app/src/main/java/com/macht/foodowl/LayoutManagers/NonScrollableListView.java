@@ -1,4 +1,4 @@
-package com.macht.foodowl.NonScrollableListView;
+package com.macht.foodowl.LayoutManagers;
 
 import android.content.Context;
 import android.util.AttributeSet;

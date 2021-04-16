@@ -8,7 +8,9 @@ import java.util.Map;
 
 public class OrderAdapter implements Parcelable {
    public String orderid;
+   public String user_id;
    public String time;
+   public String order_state;
    public String order_status;
    public int amount_paid;
    public int item_total;
@@ -16,14 +18,37 @@ public class OrderAdapter implements Parcelable {
    public int discount;
    public DeliveryDetail deliveryDetail;
    public CartDetails orderdetail;
+   public String total_order_string;
    public Map<String,CartElement> cart_list;
 
 
-   public  OrderAdapter(){}
+    public  OrderAdapter(){}
 
-    public OrderAdapter(String orderid, String time, String order_status, int amount_paid, int item_total, int delivery_amount, int discount, DeliveryDetail deliveryDetail, CartDetails orderdetail, Map<String, CartElement> cart_list) {
+    public OrderAdapter(String orderid, String user_id, String time, String order_state, String order_status, int amount_paid,
+                        int item_total, int delivery_amount, int discount, DeliveryDetail deliveryDetail, CartDetails orderdetail,
+                        String total_order_string, Map<String, CartElement> cart_list) {
         this.orderid = orderid;
+        this.user_id = user_id;
         this.time = time;
+        this.order_state = order_state;
+        this.order_status = order_status;
+        this.amount_paid = amount_paid;
+        this.item_total = item_total;
+        this.delivery_amount = delivery_amount;
+        this.discount = discount;
+        this.deliveryDetail = deliveryDetail;
+        this.orderdetail = orderdetail;
+        this.total_order_string = total_order_string;
+        this.cart_list = cart_list;
+    }
+
+    public OrderAdapter(String orderid, String user_id, String time, String order_state, String order_status, int amount_paid,
+                        int item_total, int delivery_amount, int discount, DeliveryDetail deliveryDetail, CartDetails orderdetail,
+                        Map<String, CartElement> cart_list) {
+        this.orderid = orderid;
+        this.user_id = user_id;
+        this.time = time;
+        this.order_state = order_state;
         this.order_status = order_status;
         this.amount_paid = amount_paid;
         this.item_total = item_total;
@@ -36,13 +61,16 @@ public class OrderAdapter implements Parcelable {
 
     protected OrderAdapter(Parcel in) {
         orderid = in.readString();
+        user_id = in.readString();
         time = in.readString();
+        order_state = in.readString();
         order_status = in.readString();
         amount_paid = in.readInt();
         item_total = in.readInt();
         delivery_amount = in.readInt();
         discount = in.readInt();
         deliveryDetail = in.readParcelable(DeliveryDetail.class.getClassLoader());
+        total_order_string = in.readString();
     }
 
     public static final Creator<OrderAdapter> CREATOR = new Creator<OrderAdapter>() {
@@ -57,6 +85,26 @@ public class OrderAdapter implements Parcelable {
         }
     };
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(orderid);
+        dest.writeString(user_id);
+        dest.writeString(time);
+        dest.writeString(order_state);
+        dest.writeString(order_status);
+        dest.writeInt(amount_paid);
+        dest.writeInt(item_total);
+        dest.writeInt(delivery_amount);
+        dest.writeInt(discount);
+        dest.writeParcelable(deliveryDetail, flags);
+        dest.writeString(total_order_string);
+    }
+
     public String getOrderid() {
         return orderid;
     }
@@ -65,12 +113,28 @@ public class OrderAdapter implements Parcelable {
         this.orderid = orderid;
     }
 
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
     public String getTime() {
         return time;
     }
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getOrder_state() {
+        return order_state;
+    }
+
+    public void setOrder_state(String order_state) {
+        this.order_state = order_state;
     }
 
     public String getOrder_status() {
@@ -129,6 +193,14 @@ public class OrderAdapter implements Parcelable {
         this.orderdetail = orderdetail;
     }
 
+    public String getTotal_order_string() {
+        return total_order_string;
+    }
+
+    public void setTotal_order_string(String total_order_string) {
+        this.total_order_string = total_order_string;
+    }
+
     public Map<String, CartElement> getCart_list() {
         return cart_list;
     }
@@ -137,20 +209,7 @@ public class OrderAdapter implements Parcelable {
         this.cart_list = cart_list;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(orderid);
-        dest.writeString(time);
-        dest.writeString(order_status);
-        dest.writeInt(amount_paid);
-        dest.writeInt(item_total);
-        dest.writeInt(delivery_amount);
-        dest.writeInt(discount);
-        dest.writeParcelable(deliveryDetail, flags);
+    public static Creator<OrderAdapter> getCREATOR() {
+        return CREATOR;
     }
 }
