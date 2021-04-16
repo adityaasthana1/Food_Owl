@@ -1,5 +1,6 @@
 package com.macht.foodowl;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -16,9 +17,13 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieDrawable;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.macht.foodowl.Adapters.CartDetails;
 import com.macht.foodowl.Adapters.CartElement;
 import com.macht.foodowl.Adapters.DeliveryDetail;
@@ -124,18 +129,57 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
 
                 firebaseFirestore.collection("orders")
                         .document(s)
-                        .set(orderAdapter)
-                        .addOnCompleteListener(task -> {
-                            message = "Order Placed Successfully!";
-                            String confirmation = "TRUE";
-                            Intent intent = new Intent();
-                            intent.putExtra("ORDER_ID", s);
-                            intent.putExtra("CONFIRMATION", confirmation);
-                            intent.putExtra("MESSAGE",message);
-                            intent.putExtra("ORDER", orderAdapter);
-                            setResult(Activity.RESULT_OK,intent);
-                            Toast.makeText(PaymentActivity.this, "OrderPlaced!", Toast.LENGTH_SHORT).show();
-                            finish();
+                        .set(orderAdapter);
+
+                firebaseFirestore.collection("users")
+                        .document(firebaseAuth.getCurrentUser().getUid())
+                        .collection("cart")
+                        .document("cartlist")
+                        .collection("list")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()){
+                                    for (QueryDocumentSnapshot snapshot : task.getResult()){
+                                        CartElement cartElement = snapshot.toObject(CartElement.class);
+                                        Toast.makeText(PaymentActivity.this, "Placing order", Toast.LENGTH_SHORT).show();
+                                        firebaseFirestore.collection("orders")
+                                                .document(s)
+                                                .collection("cartlist")
+                                                .document(cartElement.getFoodid())
+                                                .set(cartElement);
+                                        firebaseFirestore.collection("users")
+                                                .document(firebaseAuth.getCurrentUser().getUid())
+                                                .collection("cart")
+                                                .document("cartlist")
+                                                .collection("list")
+                                                .document(cartElement.getFoodid())
+                                                .delete();
+
+                                    }
+                                    firebaseFirestore.collection("users")
+                                            .document(firebaseAuth.getCurrentUser().getUid())
+                                            .collection("cart")
+                                            .document("cartdetails")
+                                            .delete()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    Intent intent = new Intent();
+                                                    intent.putExtra("CONFIRMATION", "TRUE");
+                                                    setResult(Activity.RESULT_OK, intent);
+                                                    Toast.makeText(PaymentActivity.this, "Order Placed, Sending Intent", Toast.LENGTH_SHORT).show();
+                                                    Intent intent1 = new Intent(PaymentActivity.this , TrackOrderActivity.class);
+                                                    intent1.putExtra("ORDER", orderAdapter);
+                                                    startActivity(intent1);
+                                                    finish();
+                                                }
+                                            });
+
+                                }
+
+                            }
                         });
                            
             }
