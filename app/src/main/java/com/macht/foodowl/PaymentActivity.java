@@ -110,11 +110,9 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
     @Override
     public void onPaymentSuccess(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-        lottieAnimationView.setAnimation("payment_success.json");
-        lottieAnimationView.setRepeatCount(LottieDrawable.INFINITE);
-        lottieAnimationView.playAnimation();
+
         TitleText.setText("Payment Successful!");
-        DescriptionText.setText("");
+        DescriptionText.setText("DONT CLOSE THIS SCREEN.");
         
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -169,7 +167,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
                                                     Intent intent = new Intent();
                                                     intent.putExtra("CONFIRMATION", "TRUE");
                                                     setResult(Activity.RESULT_OK, intent);
-                                                    Toast.makeText(PaymentActivity.this, "Order Placed, Sending Intent", Toast.LENGTH_SHORT).show();
+                                                    //Toast.makeText(PaymentActivity.this, "Order Placed, Sending Intent", Toast.LENGTH_SHORT).show();
                                                     Intent intent1 = new Intent(PaymentActivity.this , TrackOrderActivity.class);
                                                     intent1.putExtra("ORDER", orderAdapter);
                                                     startActivity(intent1);

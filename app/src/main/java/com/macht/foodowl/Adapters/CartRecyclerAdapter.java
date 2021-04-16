@@ -85,7 +85,6 @@ public class CartRecyclerAdapter extends FirestoreRecyclerAdapter<CartElement, C
     @Override
     protected void onBindViewHolder(@NonNull CartRecyclerViewHolder holder, int position, @NonNull CartElement model) {
         Cart.put(model.getFoodid(),model);
-        OrderFoodNames.add(model);
         Log.d("HASHMAP", "Added" + model.getFoodname()+ " TO LIST");
         Log.d("HASHMAP_VALUE", Cart.get(model.getFoodid()).toString());
         holder.CartElementName.setText(model.getFoodname());
@@ -126,11 +125,7 @@ public class CartRecyclerAdapter extends FirestoreRecyclerAdapter<CartElement, C
                             String grandtotalamount = "₹" + GrandFinalAmount;
                             FinalAmount.setText(grandtotalamount);
                             Cart.remove(model.getFoodid());
-                            for (CartElement e : OrderFoodNames){
-                                if (e.getFoodid().equals(model.foodid)){
-                                    OrderFoodNames.remove(e);
-                                }
-                            }
+
                             if (TotalAmount==0){
                                 ((Activity)context).finish();
                                 CartDetailsReference.delete();
