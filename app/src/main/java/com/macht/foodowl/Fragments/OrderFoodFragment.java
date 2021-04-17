@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +23,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.macht.foodowl.Adapters.FoodItem;
+import com.macht.foodowl.models.FoodItem;
 import com.macht.foodowl.Adapters.FoodRecyclerAdapter;
 import com.macht.foodowl.CartActivity;
 import com.macht.foodowl.R;

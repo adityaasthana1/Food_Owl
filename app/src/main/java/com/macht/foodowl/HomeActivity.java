@@ -2,53 +2,32 @@ package com.macht.foodowl;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.auth.User;
-import com.macht.foodowl.Adapters.UserDataAdapter;
+import com.macht.foodowl.models.UserDataAdapter;
+import com.macht.foodowl.Fragments.AccountFragment;
+import com.macht.foodowl.Fragments.EmptyCartFragment;
 import com.macht.foodowl.Fragments.HomeFragment;
 import com.macht.foodowl.Fragments.LoadingFragment;
 import com.macht.foodowl.Fragments.NetworkErroFragment;
 import com.macht.foodowl.Fragments.OrderFragment;
-import com.macht.foodowl.Fragments.ProfileFragment;
-import com.macht.foodowl.Fragments.SearchFragment;
-import com.synnapps.carouselview.CarouselView;
-import com.synnapps.carouselview.ImageListener;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class HomeActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
@@ -94,8 +73,6 @@ public class HomeActivity extends AppCompatActivity {
         }catch (Exception e){
             Log.d("Firebase_error", "Data cannot be retrievd from firebase.");
         }
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new LoadingFragment()).commit();
-
 
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -104,19 +81,25 @@ public class HomeActivity extends AppCompatActivity {
                 Fragment temp = null;
                 switch (item.getItemId()){
                     case R.id.nav_dashboard:
-                        temp = new HomeFragment(userDataAdapter);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new HomeFragment(userDataAdapter)).commit();
                         break;
                     case R.id.nav_profile:
-                        temp = new ProfileFragment();
-                        break;
-                    case  R.id.nav_search:
-                        temp = new SearchFragment();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new AccountFragment()).commit();
                         break;
                     case R.id.nav_trackorder:
-                        temp = new OrderFragment();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new LoadingFragment()).commit();
+                        firebaseFirestore.collection("users")
+                                .document(firebaseAuth.getCurrentUser().getUid())
+                                .collection("orders")
+                                .get()
+                                .addOnCompleteListener(task -> {
+                                    if (task.isSuccessful() && task.getResult().size() > 0)
+                                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new OrderFragment()).commit();
+                                    else getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new EmptyCartFragment()).commitAllowingStateLoss();
+                                });
                         break;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,temp).commit();
+
                 return true;
             }
         });

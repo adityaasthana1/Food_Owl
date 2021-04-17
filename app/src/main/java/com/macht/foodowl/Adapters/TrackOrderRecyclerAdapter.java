@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.macht.foodowl.R;
+import com.macht.foodowl.models.CartElement;
 
 public class TrackOrderRecyclerAdapter extends FirestoreRecyclerAdapter <CartElement, TrackOrderRecyclerAdapter.TrackOrderRecyclerViewHolder>{
 

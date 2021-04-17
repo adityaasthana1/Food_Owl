@@ -1,4 +1,4 @@
-package com.macht.foodowl.Adapters;
+package com.macht.foodowl.models;
 
 public class CartDetails {
     public int totalamount;

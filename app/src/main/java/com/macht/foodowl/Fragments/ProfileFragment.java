@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,8 +27,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.macht.foodowl.Adapters.FoodItem;
-import com.macht.foodowl.Adapters.UserDataAdapter;
+import com.macht.foodowl.models.FoodItem;
+import com.macht.foodowl.models.UserDataAdapter;
 import com.macht.foodowl.R;
 
 import java.io.ByteArrayOutputStream;

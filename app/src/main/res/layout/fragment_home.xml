@@ -131,7 +131,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:id="@+id/MyBookingLayout"
+            android:id="@+id/MyCartLayout"
             android:elevation="4dp"
             android:gravity="center_vertical"
             android:background="@drawable/darkoutline"
@@ -143,14 +143,15 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 app:cardCornerRadius="100dp"
-                android:elevation="10dp">
+                android:elevation="0dp">
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:background="#fff"
                     android:layout_gravity="start"
-                    android:src="@drawable/account_vector"
+                    android:src="@drawable/cart"
                     android:scaleType="centerCrop"
+                    android:padding="10dp"
                     android:id="@+id/userImageHome"
                     />
             </androidx.cardview.widget.CardView>
@@ -164,12 +165,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="My Orders"
+                    android:text="My Cart"
 
                     android:textSize="20dp"
                     android:fontFamily="@font/lato"
                     android:textColor="#000"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
                     />
                 <TextView
@@ -178,10 +178,8 @@
                     android:text="Tap here to check and manage all your orders."
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
                     android:textSize="14dp"
                     android:textColor="#848484"
-                    android:layout_marginTop="5dp"
                     />
 
             </LinearLayout>
@@ -213,7 +211,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="140dp"
-                    android:background="#ecf0f1"
+                    android:background="@color/darker_red"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:scaleType="centerCrop"
@@ -221,10 +219,11 @@
 
                     <ImageView
                         android:id="@+id/splashlogo"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/pngegg"
+                        android:src="@drawable/foodowlpromo"
+                        android:paddingTop="10dp"
                         android:elevation="5dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -240,7 +239,7 @@
                         android:fontFamily="@font/ralewayxtrabold"
                         android:elevation="5dp"
                         android:text="Food Owl"
-                        android:textColor="#000"
+                        android:textColor="@color/white"
                         android:textSize="20dp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -264,7 +263,7 @@
                     android:layout_gravity="start"
                     android:layout_marginTop="5dp"
                     android:textSize="16dp"
-                    android:layout_marginStart="10dp"/>
+                    android:layout_marginStart="5dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -272,9 +271,10 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="5dp"
                     android:layout_gravity="start"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="5dp"
                     android:textColor="#848484"
-                    android:text="Just like every other other awesome venture, we have our own story! Get to know about us!"
+                    android:layout_marginEnd="5dp"
+                    android:text="Just like every other other awesome ventures, we have our own story! Get to know about us!"
 
                     />
             </LinearLayout>
@@ -315,7 +315,8 @@
                     android:layout_gravity="start"
                     android:layout_marginTop="5dp"
                     android:textSize="16dp"
-                    android:layout_marginStart="10dp"/>
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -324,7 +325,8 @@
                     android:layout_marginBottom="5dp"
                     android:textColor="#848484"
                     android:layout_gravity="start"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:text="Contact our 24x7 available customer support for any help regarding any descripancies in our service."
                     />
             </LinearLayout>
@@ -352,7 +354,36 @@
                 android:textColor="#e74c3c"
                 />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#22111111"
+                android:text="Food Owl"
+                android:fontFamily="@font/ralewayxtrabold"
+                android:textSize="40dp"
+                android:layout_marginStart="10dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cure for late night hunger"
+                android:textColor="#22000000"
+                android:fontFamily="@font/galada"
+                android:layout_marginStart="10dp"
+                android:textSize="16dp"
+                />
+        </LinearLayout>
     </LinearLayout>
+
+
 
 
 </ScrollView>

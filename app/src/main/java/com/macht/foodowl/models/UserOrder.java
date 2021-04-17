@@ -1,4 +1,4 @@
-package com.macht.foodowl.Adapters;
+package com.macht.foodowl.models;
 
 import java.util.Map;
 

@@ -2,7 +2,7 @@ package com.macht.foodowl.GlobalValues;
 
 import android.app.Application;
 
-import com.macht.foodowl.Adapters.CartElement;
+import com.macht.foodowl.models.CartElement;
 
 import java.util.ArrayList;
 public class CartList extends Application {

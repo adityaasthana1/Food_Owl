@@ -25,6 +25,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.macht.foodowl.R;
+import com.macht.foodowl.models.CartDetails;
+import com.macht.foodowl.models.CartElement;
 
 import java.util.ArrayList;
 import java.util.HashMap;

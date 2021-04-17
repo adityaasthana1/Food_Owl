@@ -1,6 +1,5 @@
 package com.macht.foodowl.Adapters;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -22,6 +21,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.macht.foodowl.R;
 import com.macht.foodowl.TrackOrderActivity;
+import com.macht.foodowl.models.CartElement;
+import com.macht.foodowl.models.OrderAdapter;
 
 public class OrderRecyclerAdapter extends FirestoreRecyclerAdapter <OrderAdapter, OrderRecyclerAdapter.OrderRecyclerViewHolder> {
 

@@ -1,11 +1,9 @@
 package com.macht.foodowl.Fragments;
 
 import android.app.Activity;
-import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,44 +18,23 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ServerValue;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.WriteBatch;
-import com.macht.foodowl.Adapters.CartDetails;
-import com.macht.foodowl.Adapters.CartElement;
+import com.macht.foodowl.models.CartDetails;
+import com.macht.foodowl.models.CartElement;
 import com.macht.foodowl.Adapters.CartRecyclerAdapter;
 import com.macht.foodowl.Adapters.DeliveryDetail;
-import com.macht.foodowl.Adapters.FoodItem;
-import com.macht.foodowl.Adapters.FoodRecyclerAdapter;
-import com.macht.foodowl.Adapters.OrderAdapter;
-import com.macht.foodowl.Adapters.UserOrder;
+import com.macht.foodowl.models.OrderAdapter;
 import com.macht.foodowl.DeliveryActivity;
 import com.macht.foodowl.PaymentActivity;
 import com.macht.foodowl.R;
-import com.macht.foodowl.TrackOrderActivity;
-import com.razorpay.Checkout;
-import com.razorpay.OTP;
-import com.razorpay.PaymentResultListener;
 
-import org.json.JSONObject;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 public class CartOrderFragment extends Fragment{
     RecyclerView recyclerView;

@@ -1,14 +1,10 @@
 package com.macht.foodowl.Fragments;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,13 +15,11 @@ import androidx.fragment.app.Fragment;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.firestore.auth.User;
-import com.macht.foodowl.Adapters.UserDataAdapter;
+import com.macht.foodowl.models.UserDataAdapter;
 import com.macht.foodowl.LoginActivity;
 import com.macht.foodowl.OrderFoodActivity;
 import com.macht.foodowl.R;
 import com.synnapps.carouselview.CarouselView;
-import com.synnapps.carouselview.ImageListener;
 
 public class HomeFragment extends Fragment {
     CarouselView HomeCarousel;

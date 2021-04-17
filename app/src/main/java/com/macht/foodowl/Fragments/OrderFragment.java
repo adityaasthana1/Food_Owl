@@ -15,9 +15,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.macht.foodowl.Adapters.OrderAdapter;
+import com.macht.foodowl.models.OrderAdapter;
 import com.macht.foodowl.Adapters.OrderRecyclerAdapter;
-import com.macht.foodowl.LayoutManagers.CustomGridLayoutManager;
 import com.macht.foodowl.R;
 
 public class OrderFragment extends Fragment {
@@ -49,7 +48,8 @@ public class OrderFragment extends Fragment {
 
     void setUpRecyclerView(@NonNull View view){
         Query query = firebaseFirestore.collection("orders")
-                    .whereEqualTo("user_id", firebaseAuth.getCurrentUser().getUid());
+                    .whereEqualTo("user_id", firebaseAuth.getCurrentUser().getUid())
+                    .orderBy("time");
         FirestoreRecyclerOptions<OrderAdapter> options = new FirestoreRecyclerOptions.Builder<OrderAdapter>()
                 .setQuery(query, OrderAdapter.class)
                 .build();

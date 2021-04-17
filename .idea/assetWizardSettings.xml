@@ -301,7 +301,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$PROJECT_DIR$/../../../Aditya%20Asthana/AppData/Local/Android/Sdk/icons/material/materialicons/track_changes/baseline_track_changes_24.xml" />
+                                      <entry key="url" value="file:/$PROJECT_DIR$/../../../Aditya%20Asthana/AppData/Local/Android/Sdk/icons/material/materialicons/settings/baseline_settings_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -311,7 +311,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_baseline_track_changes_24" />
+                            <entry key="color" value="848484" />
+                            <entry key="outputName" value="ic_baseline_settings_24" />
                             <entry key="sourceFile" value="C:\Users\Aditya Asthana\AndroidStudioProjects\FoodOwl" />
                           </map>
                         </option>

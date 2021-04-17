@@ -11,12 +11,10 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.airbnb.lottie.LottieDrawable;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,18 +22,16 @@ import com.google.firebase.database.ServerValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.macht.foodowl.Adapters.CartDetails;
-import com.macht.foodowl.Adapters.CartElement;
+import com.macht.foodowl.models.CartElement;
 import com.macht.foodowl.Adapters.DeliveryDetail;
-import com.macht.foodowl.Adapters.OrderAdapter;
-import com.macht.foodowl.Adapters.UserDataAdapter;
-import com.macht.foodowl.Adapters.UserOrder;
+import com.macht.foodowl.models.OrderAdapter;
+import com.macht.foodowl.models.UserDataAdapter;
+import com.macht.foodowl.models.UserOrder;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 
 import org.json.JSONObject;
 
-import java.util.Date;
 import java.util.Map;
 
 public class PaymentActivity extends AppCompatActivity implements PaymentResultListener {
@@ -225,6 +221,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Toast.makeText(this, "Back button is disabled.", Toast.LENGTH_SHORT).show();
     }
 
     boolean isNetworkConnected(){

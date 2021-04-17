@@ -1,9 +1,10 @@
-package com.macht.foodowl.Adapters;
+package com.macht.foodowl.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.HashMap;
+import com.macht.foodowl.Adapters.DeliveryDetail;
+
 import java.util.Map;
 
 public class OrderAdapter implements Parcelable {

@@ -1,6 +1,5 @@
-package com.macht.foodowl.Adapters;
+package com.macht.foodowl.models;
 
-import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 

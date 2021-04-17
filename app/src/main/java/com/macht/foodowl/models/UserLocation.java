@@ -1,4 +1,4 @@
-package com.macht.foodowl.Adapters;
+package com.macht.foodowl.models;
 
 public class UserLocation {
     String usercountry, userstate, usercity,userpostalcode,useraddress,userlongitude,userlatitude;

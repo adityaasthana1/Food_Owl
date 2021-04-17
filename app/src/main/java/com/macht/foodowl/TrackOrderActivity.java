@@ -14,13 +14,10 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.macht.foodowl.Adapters.CartElement;
+import com.macht.foodowl.models.CartElement;
 import com.macht.foodowl.Adapters.DeliveryDetail;
-import com.macht.foodowl.Adapters.OrderAdapter;
+import com.macht.foodowl.models.OrderAdapter;
 import com.macht.foodowl.Adapters.TrackOrderRecyclerAdapter;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class TrackOrderActivity extends AppCompatActivity {
     OrderAdapter orderAdapter;

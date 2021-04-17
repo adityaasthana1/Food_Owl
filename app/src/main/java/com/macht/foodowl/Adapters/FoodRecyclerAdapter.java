@@ -31,6 +31,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.macht.foodowl.R;
+import com.macht.foodowl.models.CartDetails;
+import com.macht.foodowl.models.CartElement;
+import com.macht.foodowl.models.FoodItem;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -45,7 +48,7 @@ public class FoodRecyclerAdapter extends FirestoreRecyclerAdapter<FoodItem, Food
     Context context;
     View fragmentView;
     TextView priceView;
-    HashMap<String,CartElement> Cart;
+    HashMap<String, CartElement> Cart;
     int TotalAmount;
     CartDetails cartDetails;
 

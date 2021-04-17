@@ -17,19 +17,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Food Owl Menu Card"
+            android:text="Track your Orders!"
             android:textColor="#000"
             android:fontFamily="@font/ralewayxtrabold"
             android:layout_gravity="start"
             android:layout_marginTop="5dp"
-            android:textSize="14dp"/>
+            android:textSize="18dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="11dp"
-            android:text="Build your menu card from the following items available right now for order. Your Order will be place
-once the payment is completed. You will be recieving live notifications from our services regarding your order."
+            android:text="Track and Check your orders here."
             android:textColor="#848484"
             />
     </LinearLayout>
