@@ -23,7 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.macht.foodowl.models.CartElement;
-import com.macht.foodowl.Adapters.DeliveryDetail;
+import com.macht.foodowl.models.DeliveryDetail;
 import com.macht.foodowl.models.OrderAdapter;
 import com.macht.foodowl.models.UserDataAdapter;
 import com.macht.foodowl.models.UserOrder;

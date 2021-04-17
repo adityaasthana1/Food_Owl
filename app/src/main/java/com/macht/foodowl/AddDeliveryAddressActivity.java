@@ -24,14 +24,13 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.macht.foodowl.Adapters.DeliveryDetail;
+import com.macht.foodowl.models.DeliveryDetail;
 import com.macht.foodowl.Fragments.ManualDeliveryFragment;
 import com.macht.foodowl.Fragments.UnderConstructionFragment;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-import java.util.UUID;
 
 public class AddDeliveryAddressActivity extends AppCompatActivity implements LocationListener {
     LinearLayout AddManuallyLayout, CurrentLocationLayout, AddButtonLayout;

@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.macht.foodowl.R;
+import com.macht.foodowl.models.DeliveryDetail;
 
 public class DeliveryRecyclerAdapter extends FirestoreRecyclerAdapter<DeliveryDetail, DeliveryRecyclerAdapter.DeliveryRecyclerViewHolder> {
 

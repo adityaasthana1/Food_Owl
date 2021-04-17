@@ -27,7 +27,7 @@ import com.google.firebase.firestore.Query;
 import com.macht.foodowl.models.CartDetails;
 import com.macht.foodowl.models.CartElement;
 import com.macht.foodowl.Adapters.CartRecyclerAdapter;
-import com.macht.foodowl.Adapters.DeliveryDetail;
+import com.macht.foodowl.models.DeliveryDetail;
 import com.macht.foodowl.models.OrderAdapter;
 import com.macht.foodowl.DeliveryActivity;
 import com.macht.foodowl.PaymentActivity;

@@ -1,4 +1,4 @@
-package com.macht.foodowl.Adapters;
+package com.macht.foodowl.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

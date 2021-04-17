@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.macht.foodowl.Adapters.DeliveryDetail;
+import com.macht.foodowl.models.DeliveryDetail;
 import com.macht.foodowl.R;
 
 import java.util.UUID;

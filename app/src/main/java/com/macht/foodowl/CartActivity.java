@@ -1,6 +1,5 @@
 package com.macht.foodowl;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,23 +8,16 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.macht.foodowl.Adapters.CartLoadingFragment;
+import com.macht.foodowl.Fragments.CartLoadingFragment;
 import com.macht.foodowl.Fragments.CartOrderFragment;
 import com.macht.foodowl.Fragments.EmptyCartFragment;
-import com.macht.foodowl.Fragments.FoodLoadingFragment;
 import com.macht.foodowl.Fragments.NetworkErroFragment;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class CartActivity extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore;
