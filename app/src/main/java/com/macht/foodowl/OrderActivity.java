@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.macht.foodowl.Fragments.NetworkErroFragment;
+import com.macht.foodowl.Fragments.NetworkErrorStaticFragment;
 import com.macht.foodowl.Fragments.OrderFragment;
 
 public class OrderActivity extends AppCompatActivity {
@@ -30,7 +31,7 @@ public class OrderActivity extends AppCompatActivity {
         if (isNetworkConnected()){
             getSupportFragmentManager().beginTransaction().replace(R.id.myorders_framelayout, new OrderFragment()).commitAllowingStateLoss();
         }else{
-            getSupportFragmentManager().beginTransaction().replace(R.id.myorders_framelayout, new NetworkErroFragment()).commitAllowingStateLoss();
+            getSupportFragmentManager().beginTransaction().replace(R.id.myorders_framelayout, new NetworkErrorStaticFragment()).commitAllowingStateLoss();
         }
 
 

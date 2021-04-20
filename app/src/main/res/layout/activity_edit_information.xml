@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MicroActivities.EditInformationActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Information"
+        android:textColor="@color/black"
+        android:fontFamily="@font/ralewayxtrabold"
+        android:layout_marginBottom="1dp"
+        android:textSize="24dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:textColor="@color/black"
+        android:text="Change the value of the following fields to update your information."
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:gravity="center_horizontal"
+        android:fontFamily="@font/robotoregular"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/edittextshape"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:textSize="13dp"
+        android:hint="First Name"
+        android:paddingStart="20dp"
+        android:id="@+id/editinformation_firstname"
+        android:inputType="textPersonName"
+        android:paddingEnd="50dp"
+        android:layout_marginTop="10dp"
+        android:textColorHint="#848484"
+        android:textColor="#000"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/edittextshape"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:textSize="13dp"
+        android:hint="Last Name"
+        android:paddingStart="20dp"
+        android:id="@+id/editinformation_lastname"
+        android:inputType="textPersonName"
+        android:paddingEnd="50dp"
+        android:layout_marginTop="5dp"
+        android:textColorHint="#848484"
+        android:textColor="#000"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/edittextshape"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:textSize="13dp"
+        android:hint="Phone"
+
+        android:paddingStart="20dp"
+        android:id="@+id/editinformation_phone"
+        android:inputType="textPersonName"
+        android:paddingEnd="50dp"
+        android:layout_marginTop="5dp"
+        android:textColorHint="#848484"
+        android:textColor="#000"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="20dp"
+        android:text="Update"
+        android:background="@drawable/button0"
+        android:id="@+id/editinformation_button"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:layout_marginTop="10dp"
+        android:id="@+id/error_message"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#22111111"
+            android:text="Food Owl"
+            android:fontFamily="@font/ralewayxtrabold"
+            android:textSize="40dp"
+            android:layout_marginStart="40dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cure for late night hunger"
+            android:textColor="#22000000"
+            android:fontFamily="@font/galada"
+            android:layout_marginStart="40dp"
+            android:textSize="16dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

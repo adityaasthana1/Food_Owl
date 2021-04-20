@@ -181,6 +181,7 @@ public class LoginActivity extends AppCompatActivity {
                                                     }
                                                 }
                                             });
+                                    progressDialog.dismiss();
                                     finish();
                                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                                 }

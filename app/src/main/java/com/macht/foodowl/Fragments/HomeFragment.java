@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+import com.macht.foodowl.CartActivity;
+import com.macht.foodowl.OrderActivity;
 import com.macht.foodowl.models.UserDataAdapter;
 import com.macht.foodowl.LoginActivity;
 import com.macht.foodowl.OrderFoodActivity;
@@ -23,7 +25,7 @@ import com.synnapps.carouselview.CarouselView;
 
 public class HomeFragment extends Fragment {
     CarouselView HomeCarousel;
-    LinearLayout OrderOnlineFoodLayout, AboutUsLayout, ContactUsLayout;
+    LinearLayout OrderOnlineFoodLayout, AboutUsLayout, ContactUsLayout, MyCartLayout;
     int[] OfferImages = {R.drawable.food1,R.drawable.food2,R.drawable.food3, R.drawable.food4};
     TextView UserName;
     FirebaseAuth firebaseAuth;
@@ -50,6 +52,8 @@ public class HomeFragment extends Fragment {
         HomeCarousel = view.findViewById(R.id.homecarousel);
         AboutUsLayout = view.findViewById(R.id.AboutUsLayout);
         ContactUsLayout = view.findViewById(R.id.contactus);
+        MyCartLayout = view.findViewById(R.id.MyCartLayout);
+
         UserName = view.findViewById(R.id.userFirstName);
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -66,6 +70,10 @@ public class HomeFragment extends Fragment {
             startActivity(new Intent(getContext(), LoginActivity.class));
             getActivity().finish();
 
+        });
+
+        MyCartLayout.setOnClickListener(v -> {
+            startActivity(new Intent(getContext(), CartActivity.class));
         });
 
     }

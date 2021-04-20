@@ -17,7 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOwl"
         tools:replace="android:theme">
-        <activity android:name=".OrderActivity"></activity>
+        <activity android:name=".MicroActivities.FeedBackActivity"></activity>
+        <activity android:name=".MicroActivities.EditInformationActivity" />
+        <activity android:name=".MicroActivities.ChangePasswordActivity" />
+        <activity android:name=".MicroActivities.SettingsActivity" />
+        <activity android:name=".OrderActivity" />
         <activity android:name=".TrackOrderActivity" />
         <activity android:name=".AddDeliveryAddressActivity" />
         <activity android:name=".DeliveryActivity" />

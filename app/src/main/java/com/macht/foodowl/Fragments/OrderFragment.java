@@ -26,6 +26,7 @@ public class OrderFragment extends Fragment {
     FirebaseAuth firebaseAuth;
     OrderRecyclerAdapter orderRecyclerAdapter;
 
+
     public OrderFragment(){
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();

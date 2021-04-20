@@ -4,9 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -40,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
     TextView NameText;
     UserDataAdapter userDataAdapter;
 
+
     final int WAIT_TIME = 3000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,57 +58,69 @@ public class HomeActivity extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new LoadingFragment()).commit();
 
-        try {
-            firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid())
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+        if (!isNetworkConnected()){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new NetworkErroFragment()).commit();
+            //bottomNavigationView.setVisibility(View.INVISIBLE);
+        }else {
+            try {
+                firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid())
+                        .get()
+                        .addOnSuccessListener(documentSnapshot -> {
+
                             userDataAdapter = documentSnapshot.toObject(UserDataAdapter.class);
                             HomeFragment homeFragment = new HomeFragment(userDataAdapter);
-                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,homeFragment).commit();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new NetworkErroFragment());
-                        }
-                    });
-        }catch (Exception e){
-            Log.d("Firebase_error", "Data cannot be retrievd from firebase.");
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,homeFragment).commitAllowingStateLoss();
+
+                            bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+                                Fragment temp = null;
+                                switch (item.getItemId()){
+                                    case R.id.nav_dashboard:
+                                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new HomeFragment(userDataAdapter)).commitAllowingStateLoss();
+                                        break;
+                                    case R.id.nav_profile:
+                                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new AccountFragment(userDataAdapter)).commitAllowingStateLoss();
+                                        break;
+                                    case R.id.nav_trackorder:
+                                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new LoadingFragment()).commitAllowingStateLoss();
+                                        firebaseFirestore.collection("users")
+                                                .document(firebaseAuth.getCurrentUser().getUid())
+                                                .collection("orders")
+                                                .get()
+                                                .addOnCompleteListener(task -> {
+                                                    if (task.isSuccessful() && task.getResult().size() > 0)
+                                                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new OrderFragment()).commitAllowingStateLoss();
+                                                    else getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new EmptyCartFragment()).commitAllowingStateLoss();
+                                                });
+                                        break;
+                                }
+
+                                return true;
+                            });
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new NetworkErroFragment());
+                            }
+                        });
+            }catch (Exception e){
+                Log.d("Firebase_error", "Data cannot be retrievd from firebase.");
+            }
         }
 
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment temp = null;
-                switch (item.getItemId()){
-                    case R.id.nav_dashboard:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new HomeFragment(userDataAdapter)).commit();
-                        break;
-                    case R.id.nav_profile:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new AccountFragment()).commit();
-                        break;
-                    case R.id.nav_trackorder:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new LoadingFragment()).commit();
-                        firebaseFirestore.collection("users")
-                                .document(firebaseAuth.getCurrentUser().getUid())
-                                .collection("orders")
-                                .get()
-                                .addOnCompleteListener(task -> {
-                                    if (task.isSuccessful() && task.getResult().size() > 0)
-                                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new OrderFragment()).commit();
-                                    else getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new EmptyCartFragment()).commitAllowingStateLoss();
-                                });
-                        break;
-                }
 
-                return true;
-            }
-        });
+
     }
+
+    boolean isNetworkConnected(){
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+
     public boolean isConnected() throws InterruptedException, IOException {
         String command = "ping -c 1 google.com";
         return Runtime.getRuntime().exec(command).waitFor() == 0;

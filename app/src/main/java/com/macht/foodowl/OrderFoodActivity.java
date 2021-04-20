@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 
 import com.macht.foodowl.Fragments.FoodLoadingFragment;
 import com.macht.foodowl.Fragments.NetworkErroFragment;
+import com.macht.foodowl.Fragments.NetworkErrorStaticFragment;
 import com.macht.foodowl.Fragments.OrderFoodFragment;
 
 import java.io.IOException;
@@ -34,7 +35,7 @@ public class OrderFoodActivity extends AppCompatActivity {
             },LOAD_TIME);
 
         }else{
-            getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_orderfood,new NetworkErroFragment()).commitAllowingStateLoss();
+            getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_orderfood,new NetworkErrorStaticFragment()).commitAllowingStateLoss();
         }
 
 

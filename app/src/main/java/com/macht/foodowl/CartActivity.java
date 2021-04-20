@@ -16,6 +16,7 @@ import com.macht.foodowl.Fragments.CartLoadingFragment;
 import com.macht.foodowl.Fragments.CartOrderFragment;
 import com.macht.foodowl.Fragments.EmptyCartFragment;
 import com.macht.foodowl.Fragments.NetworkErroFragment;
+import com.macht.foodowl.Fragments.NetworkErrorStaticFragment;
 
 import java.io.IOException;
 
@@ -48,7 +49,7 @@ public class CartActivity extends AppCompatActivity {
                         }
                     });
         }else {
-            getSupportFragmentManager().beginTransaction().replace(R.id.cart_framelayout, new NetworkErroFragment()).commitAllowingStateLoss();
+            getSupportFragmentManager().beginTransaction().replace(R.id.cart_framelayout, new NetworkErrorStaticFragment()).commitAllowingStateLoss();
         }
 
 
