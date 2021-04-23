@@ -18,10 +18,12 @@
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="match_parent"
             android:layout_height="130dp"
-            app:lottie_fileName="owlsleeping.json"
+            app:lottie_fileName="signup.json"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             android:background="#fff"
+            android:scaleX="1.3"
+            android:scaleY="1.3"
             />
 
 
@@ -179,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:text="Terms of Use"
                 android:textColor="@color/red"
-                android:id="@+id/termsofuse"
+                android:id="@+id/termsofuse_signup"
                 android:layout_marginEnd="20dp"
                 />
             <TextView
@@ -187,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:text=" Privacy Policy"
                 android:layout_marginStart="20dp"
-                android:id="@+id/privacypolicy"
+                android:id="@+id/privacypolic_signupy"
                 android:textColor="@color/red"/>
         </LinearLayout>
 

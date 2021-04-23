@@ -69,9 +69,11 @@ public class EditInformationActivity extends AppCompatActivity {
             userDataAdapter.setLname(Lname);
             userDataAdapter.setPhone(phone);
 
+            UserDataAdapter userdata = new UserDataAdapter(Fname,Lname,firebaseAuth.getCurrentUser().getEmail(),phone, userDataAdapter.getUri());
+
             firebaseFirestore.collection("users")
                     .document(firebaseAuth.getCurrentUser().getUid())
-                    .set(userDataAdapter)
+                    .set(userdata)
                     .addOnCompleteListener(task1 -> {
                         Toast.makeText(this, "Your data is updated", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();

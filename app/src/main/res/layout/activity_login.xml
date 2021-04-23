@@ -21,7 +21,7 @@
             android:text="Food Owl"
             android:textColor="#000"
             android:textSize="40dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="100dp"
             android:fontFamily="@font/ralewayxtrabold"
             />
         <TextView
@@ -39,14 +39,40 @@
 
             />
 
-        <com.google.android.gms.common.SignInButton
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
+            android:background="@drawable/darkoutline"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            app:buttonSize="wide"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
             android:id="@+id/google_signin_button"
-            android:layout_marginTop="30dp"
-            />
+            android:elevation="4dp"
+            android:layout_marginTop="60dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/googleicon"
+                android:layout_marginStart="10dp"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign in with Google"
+                android:fontFamily="@font/robotoregular"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:layout_margin="10dp"
+                />
+
+        </LinearLayout>
 
 
         <EditText
@@ -91,6 +117,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginTop="20dp"
+            android:elevation="5dp"
             android:text="Sign in"
             android:id="@+id/signinbutton"
             android:textColor="#ecf0f1"
@@ -167,7 +194,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
-            android:layout_marginBottom="160dp"
+            android:layout_marginBottom="1dp"
             android:layout_gravity="bottom"
             android:gravity="center"
             >
@@ -188,6 +215,33 @@
                 android:textColor="@color/red"/>
         </LinearLayout>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="80dp"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#22111111"
+                android:text="Food Owl"
+                android:fontFamily="@font/ralewayxtrabold"
+                android:textSize="40dp"
+                android:layout_marginStart="40dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cure for late night hunger"
+                android:textColor="#22000000"
+                android:fontFamily="@font/galada"
+                android:layout_marginStart="40dp"
+                android:textSize="16dp"
+                />
+        </LinearLayout>
 
 
     </LinearLayout>

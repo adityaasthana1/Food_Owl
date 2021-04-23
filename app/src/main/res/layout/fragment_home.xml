@@ -16,6 +16,7 @@
         android:gravity="center_horizontal"
         android:elevation="10dp"
         android:orientation="vertical"
+        android:layoutAnimation="@anim/layout_animation_fast"
         tools:context=".HomeActivity">
 
 
@@ -36,7 +37,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Aditya"
                 android:textColor="#000"
                 android:fontFamily="@font/lato"
                 android:id="@+id/userFirstName"
@@ -71,7 +71,7 @@
                 android:layout_height="200dp"
                 app:fillColor="#FFFFFFFF"
                 app:pageColor="#00000000"
-                android:background="@drawable/offer2"
+                android:background="@drawable/offer3"
                 app:radius="6dp"
                 app:slideInterval="3000"
                 app:strokeColor="#FF777777"
@@ -151,7 +151,7 @@
                     android:layout_gravity="start"
                     android:src="@drawable/cart"
                     android:scaleType="centerCrop"
-                    android:padding="10dp"
+                    android:padding="15dp"
                     android:id="@+id/userImageHome"
                     />
             </androidx.cardview.widget.CardView>
@@ -309,7 +309,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Contact Us\nCostumer Support"
+                    android:text="Costumer Support"
                     android:textColor="#000"
                     android:fontFamily="@font/lato"
                     android:layout_gravity="start"

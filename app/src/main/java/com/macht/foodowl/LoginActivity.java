@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.macht.foodowl.MicroActivities.ChangePasswordActivity;
 import com.macht.foodowl.models.UserDataAdapter;
 
 public class LoginActivity extends AppCompatActivity {
@@ -38,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     LinearLayout SignUpButton, ForgotPasswordButton;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
-    SignInButton GooglesignInButton;
+    LinearLayout GooglesignInButton;
     GoogleSignInClient googleSignInClient;
     FirebaseFirestore firebaseFirestore;
     private String Tag = "LoginActivity";
@@ -75,37 +77,47 @@ public class LoginActivity extends AppCompatActivity {
             SignInWithGoogle();
         });
 
+        PrivacyPolicy.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://adityaasthana1.github.io/foodowl-policies/"));
+            startActivity(intent);
+        });
+
+        TermsOfUse.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://adityaasthana1.github.io/foodowl-policies/sec"));
+            startActivity(intent);
+        });
+
         if(firebaseUser != null && firebaseUser.isEmailVerified()){
             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
             finish();
         }
 
+        ForgotPasswordButton.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), ChangePasswordActivity.class));
+        });
         
-        
-        SigninButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = Email.getText().toString().trim();
-                String password = Password.getText().toString().trim();
-                
-                if(email.isEmpty() || password.isEmpty()){
-                    Toast.makeText(LoginActivity.this, "Empty Fields", Toast.LENGTH_LONG).show();
-                }else{
-                    firebaseAuth.signInWithEmailAndPassword(email,password)
-                            .addOnSuccessListener(authResult -> {
-                                if(firebaseAuth.getCurrentUser().isEmailVerified()){
-                                    finish();
-                                    startActivity(new Intent(LoginActivity.this,HomeActivity.class));
-                                }else{
-                                    Toast.makeText(LoginActivity.this, "Please verify your email.", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnFailureListener(e -> {
-                                Toast.makeText(LoginActivity.this, "Please try again later.", Toast.LENGTH_SHORT).show();
-                            });
-                }
-                
+        SigninButton.setOnClickListener(v -> {
+            String email = Email.getText().toString().trim();
+            String password = Password.getText().toString().trim();
+
+            if(email.isEmpty() || password.isEmpty()){
+                Toast.makeText(LoginActivity.this, "Empty Fields", Toast.LENGTH_LONG).show();
+            }else{
+                firebaseAuth.signInWithEmailAndPassword(email,password)
+                        .addOnSuccessListener(authResult -> {
+
+                            if(firebaseAuth.getCurrentUser().isEmailVerified()){
+                                finish();
+                                startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+                            }else{
+                                Toast.makeText(LoginActivity.this, "Please verify your email.", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(e -> {
+                            Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
             }
+
         });
 
         SignUpButton.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +157,7 @@ public class LoginActivity extends AppCompatActivity {
             GoogleSignInAccount googleSignInAccount = task.getResult(ApiException.class);
             Toast.makeText(this, "Signed In Successfully", Toast.LENGTH_SHORT).show();
             AuthCredential authCredential = GoogleAuthProvider.getCredential(googleSignInAccount.getIdToken(),null);
-            progressDialog = new ProgressDialog(LoginActivity.this);
+            progressDialog = new ProgressDialog(LoginActivity.this, R.style.MyDialogTheme);
             progressDialog.setTitle("Signing In");
             progressDialog.setMessage("Hold up! We are signing you up.");
             progressDialog.setCanceledOnTouchOutside(false);

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.macht.foodowl.CartActivity;
 import com.macht.foodowl.DeliveryActivity;
 import com.macht.foodowl.LoginActivity;
+import com.macht.foodowl.MicroActivities.DeveloperProfileActivity;
 import com.macht.foodowl.MicroActivities.FeedBackActivity;
+import com.macht.foodowl.MicroActivities.GetSupportActivity;
+import com.macht.foodowl.MicroActivities.PrivacyPoliciesActivity;
 import com.macht.foodowl.R;
 import com.macht.foodowl.MicroActivities.SettingsActivity;
 import com.macht.foodowl.models.UserDataAdapter;
@@ -70,7 +74,6 @@ public class AccountFragment extends Fragment {
         MyCartLayout = view.findViewById(R.id.account_mycart);
         GetSupportLayout = view.findViewById(R.id.account_getsupport);
         PoliciesLayout = view.findViewById(R.id.account_policieslayout);
-        AboutLayout = view.findViewById(R.id.account_aboutlayout);
         DeveloperContactLayout = view.findViewById(R.id.account_developer_contact);
         LogoutLayout = view.findViewById(R.id.account_logout);
 
@@ -86,9 +89,18 @@ public class AccountFragment extends Fragment {
             AccountImage.setImageResource(R.drawable.account_vector);
         }
 
-        AccountFullName.setText(full_name);
-        AccountPhone.setText(dataAdapter.getPhone());
-        AccountEmail.setText(firebaseAuth.getCurrentUser().getEmail());
+        try{
+            AccountFullName.setText(full_name);
+            AccountPhone.setText(dataAdapter.getPhone());
+            AccountEmail.setText(firebaseAuth.getCurrentUser().getEmail());
+        }catch (Exception e){
+            Log.d("ErrorDetaisl", e.getMessage());
+        }
+
+
+        PoliciesLayout.setOnClickListener(v -> {
+            startActivity(new Intent(getContext(), PrivacyPoliciesActivity.class));
+        });
 
         /*
         firebaseFirestore.collection("users")
@@ -117,6 +129,10 @@ public class AccountFragment extends Fragment {
 
          */
 
+        GetSupportLayout.setOnClickListener(v -> {
+            startActivity(new Intent(getContext(), GetSupportActivity.class));
+        });
+
         WriteFeedback.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), FeedBackActivity.class));
         });
@@ -135,7 +151,7 @@ public class AccountFragment extends Fragment {
 
         LogoutLayout.setOnClickListener(v -> {
 
-            builder = new AlertDialog.Builder(getContext());
+            builder = new AlertDialog.Builder(getContext(), R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Background);
             builder.setTitle("Logout");
             builder.setMessage("Are you sure you want to logout?");
             builder.setPositiveButton("Yes", (dialog, which) -> {
@@ -148,6 +164,10 @@ public class AccountFragment extends Fragment {
             });
             builder.setCancelable(false);
             builder.show();
+        });
+
+        DeveloperContactLayout.setOnClickListener(v -> {
+            startActivity(new Intent(getContext(), DeveloperProfileActivity.class));
         });
 
     }

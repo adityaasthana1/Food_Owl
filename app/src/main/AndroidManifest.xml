@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -17,21 +18,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOwl"
         tools:replace="android:theme">
-        <activity android:name=".MicroActivities.FeedBackActivity"></activity>
-        <activity android:name=".MicroActivities.EditInformationActivity" />
-        <activity android:name=".MicroActivities.ChangePasswordActivity" />
-        <activity android:name=".MicroActivities.SettingsActivity" />
+        <activity android:name=".MicroActivities.AboutUsActivity"></activity>
+        <activity android:name=".MicroActivities.GetSupportActivity" android:screenOrientation="portrait" />
+        <activity android:name=".MicroActivities.PrivacyPoliciesActivity" android:screenOrientation="portrait" />
+        <activity android:name=".MicroActivities.DeveloperProfileActivity" android:screenOrientation="portrait" />
+        <activity android:name=".MicroActivities.FeedBackActivity" android:screenOrientation="portrait" />
+        <activity android:name=".MicroActivities.EditInformationActivity" android:screenOrientation="portrait" />
+        <activity android:name=".MicroActivities.ChangePasswordActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".MicroActivities.SettingsActivity" android:screenOrientation="portrait" />
         <activity android:name=".OrderActivity" />
-        <activity android:name=".TrackOrderActivity" />
-        <activity android:name=".AddDeliveryAddressActivity" />
-        <activity android:name=".DeliveryActivity" />
-        <activity android:name=".CartActivity" />
-        <activity android:name=".PaymentActivity" />
-        <activity android:name=".OrderFoodActivity" />
+        <activity android:name=".TrackOrderActivity" android:screenOrientation="portrait" />
+        <activity android:name=".AddDeliveryAddressActivity" android:screenOrientation="portrait" />
+        <activity android:name=".DeliveryActivity" android:screenOrientation="portrait" />
+        <activity android:name=".CartActivity" android:screenOrientation="portrait" />
+        <activity android:name=".PaymentActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".OrderFoodActivity"  />
         <activity android:name=".SignupActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".HomeActivity" android:screenOrientation="portrait"/>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

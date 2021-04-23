@@ -16,4 +16,7 @@
     <string name="order_accepeted">Your order has been accepted by our representatives. Relax, till we are preparing your order and assign you one of our delivery agents.</string>
     <string name="order_onway">Your order have been prepared with love and now its on the way to you! Hold your cravings till our delivery agent knock on your door!</string>
     <string name="order_delivered">Your order has been delivered successfully! Hope you enjoyed your meal. And if you did, We would appreciate if you consider reviewing our service from the app.</string>
+    <string name="aditya_asthana">Hello, I am Aditya, the creator of <b>Food Owl</b>, a hyperlocal late night food delivery service that is yet to be launched. I also founded <b>Project Macht </b>
+        <i>(https://www.projectmacht.xyz).</i>
+        I am currently pursuing B.Tech in Computer Science at LNCT Bhopal. I am a Computer Science Enthusiast. I am skilled in Android Development and Machine Learning.  </string>
 </resources>

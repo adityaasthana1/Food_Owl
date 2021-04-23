@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -45,6 +48,8 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(SignupActivity.this);
         progressDialog.setMessage("Please wait while we sign you up");
         progressDialog.setCanceledOnTouchOutside(false);
+        TermsOfUse = findViewById(R.id.termsofuse_signup);
+        PrivacyPolicy = findViewById(R.id.privacypolic_signupy);
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -94,7 +99,7 @@ public class SignupActivity extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(SignupActivity.this, "Cant Do that!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignupActivity.this, e.getMessage() , Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
                             }
                         });
@@ -102,6 +107,18 @@ public class SignupActivity extends AppCompatActivity {
 
 
         });
+
+        PrivacyPolicy.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://adityaasthana1.github.io/foodowl-policies/"));
+            startActivity(intent);
+        });
+
+        TermsOfUse.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://adityaasthana1.github.io/foodowl-policies/sec"));
+            startActivity(intent);
+        });
+
+
 
 
 

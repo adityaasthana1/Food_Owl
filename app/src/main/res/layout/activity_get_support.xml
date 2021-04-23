@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white"
+    android:layoutAnimation="@anim/layout_animation_fast"
+    tools:context=".MicroActivities.GetSupportActivity">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:lottie_fileName="support.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:layout_marginTop="30dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Welcome to Food Owl Support"
+        android:fontFamily="@font/robotblack"
+        android:textSize="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#848484"
+        android:text="Currently, our support is limited to call and email. We care about your concerns, to get assistance contact us at :"
+        android:layout_marginStart="20dp"
+        android:gravity="center_horizontal"
+        android:layout_marginEnd="20dp"
+        android:textSize="12dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:text="9752778817"
+        android:fontFamily="@font/robotblack"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/phonenumber_support"
+        android:textSize="16dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#848484"
+        android:text="Or write us at:"
+        android:layout_marginStart="20dp"
+        android:gravity="center_horizontal"
+        android:layout_marginEnd="20dp"
+        android:textSize="12dp"
+        android:layout_marginTop="10dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:text="asthana.aditya1@gmail.com"
+        android:fontFamily="@font/robotblack"
+        android:layout_marginBottom="150dp"
+        android:textSize="14dp"/>
+
+</LinearLayout>

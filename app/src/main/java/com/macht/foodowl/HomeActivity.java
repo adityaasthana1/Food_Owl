@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.macht.foodowl.Fragments.NoOrderFragment;
 import com.macht.foodowl.models.UserDataAdapter;
 import com.macht.foodowl.Fragments.AccountFragment;
 import com.macht.foodowl.Fragments.EmptyCartFragment;
@@ -89,7 +90,7 @@ public class HomeActivity extends AppCompatActivity {
                                                 .addOnCompleteListener(task -> {
                                                     if (task.isSuccessful() && task.getResult().size() > 0)
                                                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new OrderFragment()).commitAllowingStateLoss();
-                                                    else getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new EmptyCartFragment()).commitAllowingStateLoss();
+                                                    else getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new NoOrderFragment()).commitAllowingStateLoss();
                                                 });
                                         break;
                                 }

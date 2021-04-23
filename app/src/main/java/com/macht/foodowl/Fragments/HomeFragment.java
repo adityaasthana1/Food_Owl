@@ -16,6 +16,8 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.macht.foodowl.CartActivity;
+import com.macht.foodowl.MicroActivities.AboutUsActivity;
+import com.macht.foodowl.MicroActivities.GetSupportActivity;
 import com.macht.foodowl.OrderActivity;
 import com.macht.foodowl.models.UserDataAdapter;
 import com.macht.foodowl.LoginActivity;
@@ -66,10 +68,12 @@ public class HomeFragment extends Fragment {
         });
 
         ContactUsLayout.setOnClickListener(v -> {
-            firebaseAuth.signOut();
-            startActivity(new Intent(getContext(), LoginActivity.class));
-            getActivity().finish();
+            startActivity(new Intent(getContext(), GetSupportActivity.class));
 
+        });
+
+        AboutUsLayout.setOnClickListener(v -> {
+            startActivity(new Intent(getContext(), AboutUsActivity.class));
         });
 
         MyCartLayout.setOnClickListener(v -> {
