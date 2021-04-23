@@ -50,7 +50,7 @@ public class OrderFragment extends Fragment {
     void setUpRecyclerView(@NonNull View view){
         Query query = firebaseFirestore.collection("orders")
                     .whereEqualTo("user_id", firebaseAuth.getCurrentUser().getUid())
-                    .orderBy("time");
+                    .orderBy("order_status");
         FirestoreRecyclerOptions<OrderAdapter> options = new FirestoreRecyclerOptions.Builder<OrderAdapter>()
                 .setQuery(query, OrderAdapter.class)
                 .build();

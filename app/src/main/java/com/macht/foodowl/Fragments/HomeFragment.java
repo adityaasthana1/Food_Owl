@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,11 +25,12 @@ import com.macht.foodowl.LoginActivity;
 import com.macht.foodowl.OrderFoodActivity;
 import com.macht.foodowl.R;
 import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 public class HomeFragment extends Fragment {
     CarouselView HomeCarousel;
     LinearLayout OrderOnlineFoodLayout, AboutUsLayout, ContactUsLayout, MyCartLayout;
-    int[] OfferImages = {R.drawable.food1,R.drawable.food2,R.drawable.food3, R.drawable.food4};
+    int[] OfferImages = {R.drawable.carousal1,R.drawable.foodoffer2,R.drawable.foodoffer3, R.drawable.foodoffer4};
     TextView UserName;
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
@@ -58,6 +60,11 @@ public class HomeFragment extends Fragment {
 
         UserName = view.findViewById(R.id.userFirstName);
         firebaseAuth = FirebaseAuth.getInstance();
+        HomeCarousel.setImageListener((position, imageView) -> imageView.setImageResource(OfferImages[position]));
+        HomeCarousel.setPageCount(OfferImages.length);
+        HomeCarousel.setSlideInterval(6000);
+        HomeCarousel.setPageTransformInterval(1000);
+
 
         if (userDataAdapter!=null) {
             UserName.setText(userDataAdapter.getFname());

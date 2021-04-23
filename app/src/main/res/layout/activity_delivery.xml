@@ -20,6 +20,7 @@
             android:layout_height="40dp"
             android:src="@drawable/backbutton"
             android:padding="5dp"
+            android:background="@drawable/white_nowhere"
             android:id="@+id/deliverybackbutton"
             app:tint="@color/black" />
         <TextView

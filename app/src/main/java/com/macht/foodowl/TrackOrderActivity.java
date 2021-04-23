@@ -20,7 +20,7 @@ import com.macht.foodowl.models.OrderAdapter;
 import com.macht.foodowl.Adapters.TrackOrderRecyclerAdapter;
 
 public class TrackOrderActivity extends AppCompatActivity {
-    OrderAdapter orderAdapter;
+    OrderAdapter orderAdapter, DynamicOrderAdapter;
     TextView OrderStatusText, OrderStatusDescription, OrderIdText, OrderDate, OrderItemTotal, OrderDeliveryCharge, OrderFinalPrice, DeliveryName, DeliveryFullAddress, DeliveryPhoneNumber;
     RecyclerView TrackOrderRecyclerView;
     LottieAnimationView lottieAnimationView;
@@ -32,9 +32,6 @@ public class TrackOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track_order);
-
-        orderAdapter = getIntent().getParcelableExtra("ORDER");
-
         OrderStatusText = findViewById(R.id.order_status_text);
         OrderStatusDescription = findViewById(R.id.order_status_description);
         OrderIdText = findViewById(R.id.track_order_id);
@@ -47,9 +44,11 @@ public class TrackOrderActivity extends AppCompatActivity {
         DeliveryFullAddress = findViewById(R.id.delivery_address);
         lottieAnimationView = findViewById(R.id.track_order_animation);
         TrackOrderRecyclerView = findViewById(R.id.track_order_recyclerview);
-
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
+
+
+        orderAdapter = getIntent().getParcelableExtra("ORDER");
 
         SetUpRecyclerView();
 

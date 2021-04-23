@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -24,6 +25,7 @@ public class DeliveryActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     DeliveryRecyclerAdapter adapter;
     DeliveryDetail deliveryDetail;
+    ImageView backbutton;
     public static final int ADD_DELIVERY_ADDRESS = 1;
 
     @Override
@@ -32,6 +34,9 @@ public class DeliveryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_delivery);
         recyclerView = findViewById(R.id.delivery_recyclerview);
         AddDeliveryAddressButton = findViewById(R.id.adddeliveryaddress);
+        backbutton = findViewById(R.id.deliverybackbutton);
+
+        backbutton.setOnClickListener(v -> finish());
 
         AddDeliveryAddressButton.setOnClickListener(v -> {
             startActivityForResult(new Intent(DeliveryActivity.this , AddDeliveryAddressActivity.class) , ADD_DELIVERY_ADDRESS);

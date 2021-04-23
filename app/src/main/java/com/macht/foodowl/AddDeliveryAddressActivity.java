@@ -21,6 +21,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -50,6 +51,8 @@ public class AddDeliveryAddressActivity extends AppCompatActivity implements Loc
     String LongitudeGPS;
     String LatitudeGPS;
     boolean locationEnabledFlag = false;
+    ImageView BackButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,9 @@ public class AddDeliveryAddressActivity extends AppCompatActivity implements Loc
         ManuallyAddFUllName = findViewById(R.id.add_manually_fullname);
         ManuallyAddPhoneNumber = findViewById(R.id.add_manually_mobilenumber);
         NewDeliveryDetail = null;
+        BackButton = findViewById(R.id.adddeliverybackbutton);
+
+        BackButton.setOnClickListener(v -> finish());
 
         AddManuallyLayout.setOnClickListener(v -> {
             getSupportFragmentManager().beginTransaction().replace(R.id.addnewaddress_framelayout , new ManualDeliveryFragment()).commit();

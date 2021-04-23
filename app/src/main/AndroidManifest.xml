@@ -18,25 +18,54 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOwl"
         tools:replace="android:theme">
-        <activity android:name=".MicroActivities.AboutUsActivity"></activity>
-        <activity android:name=".MicroActivities.GetSupportActivity" android:screenOrientation="portrait" />
-        <activity android:name=".MicroActivities.PrivacyPoliciesActivity" android:screenOrientation="portrait" />
-        <activity android:name=".MicroActivities.DeveloperProfileActivity" android:screenOrientation="portrait" />
-        <activity android:name=".MicroActivities.FeedBackActivity" android:screenOrientation="portrait" />
-        <activity android:name=".MicroActivities.EditInformationActivity" android:screenOrientation="portrait" />
-        <activity android:name=".MicroActivities.ChangePasswordActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".MicroActivities.SettingsActivity" android:screenOrientation="portrait" />
+        <activity android:name=".MicroActivities.DeleteAccountActivity"></activity>
+        <activity android:name=".MicroActivities.AboutUsActivity" />
+        <activity
+            android:name=".MicroActivities.GetSupportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MicroActivities.PrivacyPoliciesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MicroActivities.DeveloperProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MicroActivities.FeedBackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MicroActivities.EditInformationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MicroActivities.ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MicroActivities.SettingsActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".OrderActivity" />
-        <activity android:name=".TrackOrderActivity" android:screenOrientation="portrait" />
-        <activity android:name=".AddDeliveryAddressActivity" android:screenOrientation="portrait" />
-        <activity android:name=".DeliveryActivity" android:screenOrientation="portrait" />
-        <activity android:name=".CartActivity" android:screenOrientation="portrait" />
-        <activity android:name=".PaymentActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".OrderFoodActivity"  />
+        <activity
+            android:name=".TrackOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddDeliveryAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DeliveryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PaymentActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".OrderFoodActivity" />
         <activity android:name=".SignupActivity" />
-        <activity android:name=".HomeActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".HomeActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,5 +73,7 @@
             </intent-filter>
         </activity>
     </application>
+
+
 
 </manifest>

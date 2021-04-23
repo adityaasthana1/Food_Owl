@@ -5,14 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:background="@color/white"
-    tools:context=".MicroActivities.ChangePasswordActivity">
+    tools:context=".MicroActivities.DeleteAccountActivity">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:lottie_fileName="deleteuser.json"
+        android:layout_marginTop="80dp"
+        app:lottie_autoPlay="true"
+        app:lottie_repeatCount="0"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Change Password"
+        android:text="Delete Account"
         android:textColor="@color/black"
         android:fontFamily="@font/ralewayxtrabold"
         android:layout_marginBottom="1dp"
@@ -24,7 +33,7 @@
         android:layout_height="wrap_content"
         android:textSize="14dp"
         android:textColor="@color/black"
-        android:text="Enter your registered email, and we will send a password reset link by which you can easily change your password."
+        android:text="Please enter your email to confirm that you want to delete your account. Our team will begin a review and your account will be deleted withing 30 days."
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
         android:gravity="center_horizontal"
@@ -45,9 +54,18 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:textSize="12dp"
-        android:id="@+id/changepassword_edittext"
+        android:id="@+id/deleteaccount_email"
         android:textColor="@color/black"
         android:textColorHint="#848484"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:layout_marginTop="5dp"
+        android:textSize="13dp"
+        android:id="@+id/deleteaccount_message"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -56,44 +74,10 @@
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
         android:layout_marginTop="20dp"
-        android:text="Send Email"
+        android:text="Delete Account"
+        android:textSize="12dp"
         android:background="@drawable/button0"
-        android:id="@+id/changepassword_button"
+        android:id="@+id/deleteaccount_button"
         />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/red"
-        android:layout_marginTop="10dp"
-        android:id="@+id/error_message"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="40dp"
-        android:orientation="vertical"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#22111111"
-            android:text="Food Owl"
-            android:fontFamily="@font/ralewayxtrabold"
-            android:textSize="40dp"
-            android:layout_marginStart="40dp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cure for late night hunger"
-            android:textColor="#22000000"
-            android:fontFamily="@font/galada"
-            android:layout_marginStart="40dp"
-            android:textSize="16dp"
-            />
-    </LinearLayout>
 
 </LinearLayout>

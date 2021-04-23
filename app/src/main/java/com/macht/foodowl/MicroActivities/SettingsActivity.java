@@ -57,7 +57,9 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), EditInformationActivity.class));
         });
 
-
+        DeleteAccountLayout.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), DeleteAccountActivity.class));
+        });
 
         BackButton.setOnClickListener(v -> {
             finish();

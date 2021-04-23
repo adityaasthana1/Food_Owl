@@ -65,12 +65,13 @@
         android:id="@+id/delete_price_container"
         android:gravity="center_horizontal"
         android:layout_alignParentEnd="true"
+        android:background="@drawable/white_nowhere"
         >
         <Button
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/deleteicon"
-            android:id="@+id/element_delete"
+            android:id="@+id/delete_delivery_icon"
             android:elevation="4dp"
             />
 

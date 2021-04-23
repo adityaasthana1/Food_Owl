@@ -1,6 +1,7 @@
 package com.macht.foodowl.Adapters;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +31,7 @@ public class DeliveryRecyclerAdapter extends FirestoreRecyclerAdapter<DeliveryDe
     FirebaseAuth firebaseAuth;
     DeliveryDetail CurrentDetail;
     Context context;
+    AlertDialog.Builder builder;
 
     public DeliveryRecyclerAdapter(@NonNull FirestoreRecyclerOptions<DeliveryDetail> options, Context context) {
         super(options);
@@ -43,28 +46,47 @@ public class DeliveryRecyclerAdapter extends FirestoreRecyclerAdapter<DeliveryDe
         holder.DeliveryElementAddress.setText(model.getFulladdress());
         holder.DeliveryElementPincode.setText(model.getPincode());
         holder.ParentLayout.setOnClickListener(v->{});
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid())
-                        .collection("currentdetail")
-                        .document("currentaddress")
-                        .set(model)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Intent intent = ((Activity)context).getIntent();
-                                CurrentDetail = model;
-                                String fulladdress = model.getFullname() + ", " + model.getHousenumber() + ", " + model.getArea() + ", " + model.getCity() + ", " + model.getState();
-                                CurrentDetail.setFulladdress(fulladdress);
-                                intent.putExtra("NEW_DELIVERY_ADDRESS", CurrentDetail);
-                                ((Activity)context).setResult(Activity.RESULT_OK, intent);
-                                ((Activity)context).finish();
-                            }
-                        });
+        holder.linearLayout.setOnClickListener(v -> firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid())
+                .collection("currentdetail")
+                .document("currentaddress")
+                .set(model)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Intent intent = ((Activity)context).getIntent();
+                        CurrentDetail = model;
+                        String fulladdress = model.getFullname() + ", " + model.getHousenumber() + ", " + model.getArea() + ", " + model.getCity() + ", " + model.getState();
+                        CurrentDetail.setFulladdress(fulladdress);
+                        intent.putExtra("NEW_DELIVERY_ADDRESS", CurrentDetail);
+                        ((Activity)context).setResult(Activity.RESULT_OK, intent);
+                        ((Activity)context).finish();
+                    }
+                }));
 
-            }
+        holder.DeliveryElementDelete.setOnClickListener(v -> {
+            builder = new AlertDialog.Builder(context,R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Background);
+            builder.setTitle("Delete Address");
+            builder.setMessage("Are you sure, you want to delete this address?");
+            builder.setPositiveButton("Yes", (dialog, which) -> {
+                firebaseFirestore.collection("users")
+                        .document(firebaseAuth.getCurrentUser().getUid())
+                        .collection("deliverdetails")
+                        .document(model.getAddressid())
+                        .delete()
+                        .addOnCompleteListener(task -> {
+                            Toast.makeText(context, "Address deleted successfully.", Toast.LENGTH_SHORT).show();
+                        });
+            });
+
+            builder.setNegativeButton("No", (dialog, which) -> {
+
+            });
+
+            builder.show();
+
+
         });
+
     }
 
     @NonNull
@@ -89,9 +111,10 @@ public class DeliveryRecyclerAdapter extends FirestoreRecyclerAdapter<DeliveryDe
             DeliveryElementName = itemView.findViewById(R.id.element_name);
             DeliveryElementAddress = itemView.findViewById(R.id.element_fulladdress);
             DeliveryElementPincode = itemView.findViewById(R.id.element_pincode);
-            DeliveryElementDelete = itemView.findViewById(R.id.element_delete);
+            DeliveryElementDelete = itemView.findViewById(R.id.delete_delivery_icon);
             ParentLayout = itemView.findViewById(R.id.list_element_parent);
             linearLayout = itemView.findViewById(R.id.delivery_address_container);
+
         }
     }
 

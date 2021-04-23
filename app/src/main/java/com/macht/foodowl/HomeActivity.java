@@ -15,8 +15,10 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -57,6 +59,7 @@ public class HomeActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
+
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new LoadingFragment()).commit();
 
         if (!isNetworkConnected()){
@@ -98,12 +101,7 @@ public class HomeActivity extends AppCompatActivity {
                                 return true;
                             });
                         })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new NetworkErroFragment());
-                            }
-                        });
+                        .addOnFailureListener(e -> getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new NetworkErroFragment()));
             }catch (Exception e){
                 Log.d("Firebase_error", "Data cannot be retrievd from firebase.");
             }

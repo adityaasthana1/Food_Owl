@@ -91,7 +91,13 @@ public class AccountFragment extends Fragment {
 
         try{
             AccountFullName.setText(full_name);
-            AccountPhone.setText(dataAdapter.getPhone());
+
+            if (dataAdapter.getPhone().equals("none")){
+                AccountPhone.setText(dataAdapter.getPhone());
+            }else{
+                
+            }
+
             AccountEmail.setText(firebaseAuth.getCurrentUser().getEmail());
         }catch (Exception e){
             Log.d("ErrorDetaisl", e.getMessage());
