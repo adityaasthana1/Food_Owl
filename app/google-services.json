@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:756813050205:android:4c5d8c528652552ebbb8b4",
+        "android_client_info": {
+          "package_name": "com.foodowl.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "756813050205-d362oeun98jodn9gbvv7cqi05ta8t0q1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGjOLaMwB3nyVddxmuNTQVHG9uzCQ7294"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "756813050205-d362oeun98jodn9gbvv7cqi05ta8t0q1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:756813050205:android:a6c1947056f064c6bbb8b4",
         "android_client_info": {
           "package_name": "com.macht.foodowl"
@@ -20,6 +49,14 @@
           "android_info": {
             "package_name": "com.macht.foodowl",
             "certificate_hash": "48e813c5de6f8c17940064caf936a780a1c3a130"
+          }
+        },
+        {
+          "client_id": "756813050205-sobvvajnuhpq23upkdm0e4ko0roqvljc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.macht.foodowl",
+            "certificate_hash": "c3f170dc03a7da936a321afb7f9d778b651e5e56"
           }
         },
         {

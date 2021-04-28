@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/red"
-        android:text="asthana.aditya1@gmail.com"
+        android:text="foodowl.main@gmail.com"
         android:fontFamily="@font/robotblack"
         android:layout_marginBottom="150dp"
         android:textSize="14dp"/>

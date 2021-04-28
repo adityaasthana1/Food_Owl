@@ -70,7 +70,7 @@ public class DeliveryRecyclerAdapter extends FirestoreRecyclerAdapter<DeliveryDe
             builder.setPositiveButton("Yes", (dialog, which) -> {
                 firebaseFirestore.collection("users")
                         .document(firebaseAuth.getCurrentUser().getUid())
-                        .collection("deliverdetails")
+                        .collection("deliverydetails")
                         .document(model.getAddressid())
                         .delete()
                         .addOnCompleteListener(task -> {

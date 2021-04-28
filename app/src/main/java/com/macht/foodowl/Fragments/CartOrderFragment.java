@@ -161,7 +161,7 @@ public class CartOrderFragment extends Fragment{
         switch (requestCode){
             case DELIVERY_ADDRESS_OPERATION:
                 if (data != null) {
-                    Toast.makeText(getContext(), "We are here", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getContext(), "We are here", Toast.LENGTH_SHORT).show();
                     CurrentDelivery = data.getParcelableExtra("NEW_DELIVERY_ADDRESS");
                     Log.d("CURRENT_DELIVERY", CurrentDelivery.getAddressid() + " " + CurrentDelivery.getHousenumber() + " " + CurrentDelivery.getArea() + " " + CurrentDelivery.getCity());
                     DeliveryChange.setText(R.string.change);
@@ -173,7 +173,7 @@ public class CartOrderFragment extends Fragment{
                             .document("currentaddress")
                             .set(CurrentDelivery);
 
-                }else Toast.makeText(getContext() , "Nothing was returned.", Toast.LENGTH_SHORT).show();
+                }//else Toast.makeText(getContext() , "Nothing was returned.", Toast.LENGTH_SHORT).show();
                 break;
             case PAYMENT_OPERATION:
                 if (data!=null){

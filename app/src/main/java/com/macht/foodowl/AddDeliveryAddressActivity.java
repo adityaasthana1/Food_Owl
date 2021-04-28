@@ -19,6 +19,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -70,10 +71,12 @@ public class AddDeliveryAddressActivity extends AppCompatActivity implements Loc
         BackButton.setOnClickListener(v -> finish());
 
         AddManuallyLayout.setOnClickListener(v -> {
+            AddButtonLayout.setVisibility(View.VISIBLE);
             getSupportFragmentManager().beginTransaction().replace(R.id.addnewaddress_framelayout , new ManualDeliveryFragment()).commit();
         });
 
         CurrentLocationLayout.setOnClickListener(v -> {
+            AddButtonLayout.setVisibility(View.INVISIBLE);
             String message = "Our GeoServices are under construction. Please add address manually. Sorry fo the inconvenience.";
             getSupportFragmentManager().beginTransaction().replace(R.id.addnewaddress_framelayout, new UnderConstructionFragment(message)).commit();
 

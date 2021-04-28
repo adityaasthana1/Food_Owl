@@ -38,6 +38,7 @@ public class FeedBackActivity extends AppCompatActivity {
 
             if (review.isEmpty()){
                 Toast.makeText(this, "You can't submit empty review :D", Toast.LENGTH_SHORT).show();
+                return;
             }
             map.put("feedback", review);
             map.put("time" , new Date().toString());

@@ -74,40 +74,55 @@
 
         </LinearLayout>
 
-
-        <EditText
+        <ss.anoop.awesometextinputlayout.AwesomeTextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/edittextshape"
+            android:layout_height="wrap_content"
+            app:borderColor="#949494"
+            app:cornerRadius="8dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:id="@+id/emailsignin"
-            android:textSize="16dp"
-            android:hint="Phone number, email or username"
-            android:paddingStart="20dp"
-            android:inputType="textEmailAddress"
-            android:paddingEnd="20dp"
             android:layout_marginTop="30dp"
-            android:outlineAmbientShadowColor="@color/red"
-            android:textColorHint="#848484"
-            android:textColor="#000"/>
+            >
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/emailsignin"
+                android:layout_gravity="center_vertical"
+                android:textSize="14dp"
+                android:hint="E-mail or username "
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:inputType="textEmailAddress"
+                android:textColorHint="#848484"
+                android:textColor="#000"/>
 
-        <EditText
+        </ss.anoop.awesometextinputlayout.AwesomeTextInputLayout>
+
+
+        <ss.anoop.awesometextinputlayout.AwesomeTextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textSize="16dp"
-            android:id="@+id/passwordsignin"
-            android:background="@drawable/edittextshape"
+            android:layout_height="wrap_content"
+            app:cornerRadius="8dp"
+            app:borderColor="#949494"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:hint="Password"
-            android:paddingStart="20dp"
-            android:drawableEnd="@drawable/showpass"
-            android:inputType="textPassword"
-            android:textColorHint="#848484"
-            android:paddingEnd="20dp"
-            android:layout_marginTop="20dp"
-            android:textColor="#000"/>
+            app:animationDuration="700"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textSize="14dp"
+                android:id="@+id/passwordsignin"
+                android:background="@drawable/edittextshape"
+                android:hint="Password"
+                android:paddingStart="10dp"
+                android:inputType="textPassword"
+                android:textColorHint="#848484"
+                android:paddingEnd="10dp"
+                android:textColor="#000"/>
+        </ss.anoop.awesometextinputlayout.AwesomeTextInputLayout>
 
 
         <android.widget.Button

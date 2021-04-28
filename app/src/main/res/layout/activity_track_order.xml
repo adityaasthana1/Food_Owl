@@ -18,7 +18,6 @@
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="160dp"
             android:layout_height="160dp"
-            app:lottie_fileName="orderplaced.json"
             android:scaleY="1.2"
             android:scaleX="1.2"
             android:id="@+id/track_order_animation"
@@ -42,7 +41,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#2ecc71"
-                android:text="Order Placed"
                 android:fontFamily="@font/ralewayxtrabold"
                 android:id="@+id/order_status_text"
                 android:textSize="24dp"/>
@@ -52,7 +50,6 @@
                 android:layout_marginBottom="5dp"
                 android:textColor="#848484"
                 android:id="@+id/order_status_description"
-                android:text="@string/order_placed"
                 android:textSize="13dp"
                 />
         </LinearLayout>
@@ -87,7 +84,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Order Id: pay_ewz4182jahw"
             android:textColor="@color/black"
             android:id="@+id/track_order_id"
 
@@ -95,7 +91,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date Placed : Thursday April 15, 2021"
             android:textColor="@color/black"
             android:id="@+id/date_placed"
             />
@@ -266,7 +261,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Aditya Asthana"
             android:textColor="@color/black"
             android:id="@+id/delivery_name"
             android:layout_marginTop="5dp"
@@ -275,7 +269,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="9752778817"
             android:textColor="@color/black"
             android:id="@+id/delivery_phone"
 
@@ -283,7 +276,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="127/5 Shastri Nagar Colony, Ujjain, Madhya Pradesh"
             android:textColor="@color/black"
             android:id="@+id/delivery_address"
             />

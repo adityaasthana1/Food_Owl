@@ -22,7 +22,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Aditya Asthana"
                 android:textSize="14dp"
                 android:fontFamily="@font/lato"
                 android:layout_marginStart="5dp"
@@ -36,7 +35,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="127/5 Shastri Nagar Colony, Ujjain, Madhya Pradesh"
             android:textColor="#000"
             android:layout_marginStart="5dp"
             android:fontFamily="@font/robotoregular"
@@ -46,7 +44,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="456010"
             android:textColor="#000"
             android:layout_marginBottom="5dp"
             android:layout_marginStart="5dp"

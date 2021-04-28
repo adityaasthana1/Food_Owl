@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -64,6 +65,7 @@ public class HomeActivity extends AppCompatActivity {
 
         if (!isNetworkConnected()){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new NetworkErroFragment()).commit();
+            bottomNavigationView.setVisibility(View.GONE);
             //bottomNavigationView.setVisibility(View.INVISIBLE);
         }else {
             try {
@@ -82,7 +84,21 @@ public class HomeActivity extends AppCompatActivity {
                                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new HomeFragment(userDataAdapter)).commitAllowingStateLoss();
                                         break;
                                     case R.id.nav_profile:
-                                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new AccountFragment(userDataAdapter)).commitAllowingStateLoss();
+                                        if (userDataAdapter==null){
+                                            firebaseFirestore.collection("users")
+                                                    .document(firebaseAuth.getCurrentUser().getUid())
+                                                    .get()
+                                                    .addOnCompleteListener(task -> {
+                                                        userDataAdapter = task.getResult().toObject(UserDataAdapter.class);
+                                                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new AccountFragment(userDataAdapter)).commitAllowingStateLoss();
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(HomeActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                        }else getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new AccountFragment(userDataAdapter)).commitAllowingStateLoss();
                                         break;
                                     case R.id.nav_trackorder:
                                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new LoadingFragment()).commitAllowingStateLoss();

@@ -24,6 +24,7 @@ import com.macht.foodowl.CartActivity;
 import com.macht.foodowl.DeliveryActivity;
 import com.macht.foodowl.LoginActivity;
 import com.macht.foodowl.MicroActivities.DeveloperProfileActivity;
+import com.macht.foodowl.MicroActivities.FavoritesActivity;
 import com.macht.foodowl.MicroActivities.FeedBackActivity;
 import com.macht.foodowl.MicroActivities.GetSupportActivity;
 import com.macht.foodowl.MicroActivities.PrivacyPoliciesActivity;
@@ -78,6 +79,10 @@ public class AccountFragment extends Fragment {
         LogoutLayout = view.findViewById(R.id.account_logout);
 
 
+        if (dataAdapter == null){
+
+        }
+
         String full_name = dataAdapter.getFname() + " " + dataAdapter.lname;
         String uri = dataAdapter.getUri();
         if (!uri.isEmpty()){
@@ -95,7 +100,7 @@ public class AccountFragment extends Fragment {
             if (dataAdapter.getPhone().equals("none")){
                 AccountPhone.setText(dataAdapter.getPhone());
             }else{
-                
+
             }
 
             AccountEmail.setText(firebaseAuth.getCurrentUser().getEmail());
@@ -153,6 +158,10 @@ public class AccountFragment extends Fragment {
 
         AddressBookLayout.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), DeliveryActivity.class));
+        });
+
+        FavoriteLayout.setOnClickListener(v -> {
+            startActivity(new Intent(getContext(), FavoritesActivity.class));
         });
 
         LogoutLayout.setOnClickListener(v -> {

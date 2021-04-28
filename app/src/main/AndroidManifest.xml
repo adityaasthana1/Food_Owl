@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOwl"
         tools:replace="android:theme">
-        <activity android:name=".MicroActivities.DeleteAccountActivity"></activity>
+        <activity android:name=".MicroActivities.FavoritesActivity"></activity>
+        <activity android:name=".MicroActivities.DeleteAccountActivity" />
         <activity android:name=".MicroActivities.AboutUsActivity" />
         <activity
             android:name=".MicroActivities.GetSupportActivity"
@@ -73,7 +74,5 @@
             </intent-filter>
         </activity>
     </application>
-
-
 
 </manifest>

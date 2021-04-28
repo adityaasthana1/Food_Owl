@@ -45,27 +45,25 @@ public class OrderRecyclerAdapter extends FirestoreRecyclerAdapter <OrderAdapter
                 .document(model.getOrderid())
                 .collection("cartlist")
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        for (QueryDocumentSnapshot snapshot : task.getResult()){
-                            CartElement cartElement = snapshot.toObject(CartElement.class);
-                            final_name[0] += cartElement.getQuantity() + "x" + cartElement.getFoodname() + " | ";
-                        }
-                        holder.FullOrderString.setText(final_name[0]);
-                        DeliveryDetail deliveryDetail = model.getDeliveryDetail();
-                        String full_address = deliveryDetail.getFullname() + ", " + deliveryDetail.getHousenumber() + ", " + deliveryDetail.getArea()
-                                + ", " + deliveryDetail.getState();
-                        holder.OrderAddress.setText(full_address);
-                        holder.OrderId.setText(model.getOrderid());
-                        if (model.getOrder_state().equals("active")){
-                            holder.OrderStatus.setTextColor(Color.parseColor("#2ecc71"));
-                        }else {
-                            holder.OrderStatus.setTextColor(Color.parseColor("#848484"));
-                        }
-                        String order_status = "Order Status : " + model.getOrder_status().toUpperCase();
-                        holder.OrderStatus.setText(order_status);
+                .addOnCompleteListener(task -> {
+                    for (QueryDocumentSnapshot snapshot : task.getResult()){
+                        CartElement cartElement = snapshot.toObject(CartElement.class);
+                        final_name[0] += cartElement.getQuantity() + "x" + cartElement.getFoodname() + " | ";
                     }
+                    holder.FullOrderString.setText(final_name[0]);
+                    DeliveryDetail deliveryDetail = model.getDeliveryDetail();
+                    String full_address = deliveryDetail.getFullname() + ", " + deliveryDetail.getHousenumber() + ", " + deliveryDetail.getArea()
+                            + ", " + deliveryDetail.getState();
+                    holder.OrderAddress.setText(full_address);
+                    holder.OrderId.setText(model.getOrderid());
+                    if (model.getOrder_state().equals("active")){
+                        holder.OrderStatus.setTextColor(Color.parseColor("#2ecc71"));
+                    }
+                    if (model.getOrder_state().equals("complete")){
+                        holder.OrderStatus.setTextColor(Color.parseColor("#848484"));
+                    }
+                    String order_status = "Order Status : " + model.getOrder_status().toUpperCase();
+                    holder.OrderStatus.setText(order_status);
                 });
             holder.ContainerLayout.setOnClickListener(v -> {
                 Intent intent = new Intent(context, TrackOrderActivity.class);
